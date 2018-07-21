@@ -1,0 +1,17 @@
+.content-section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  text-align: center;
+  line-height: 1.5;
+  font-size: 18px;
+}
+
+.content-section .container {
+  max-width: 900px;
+}
+
+.content-section h3 {
+  font-size: 36px;
+  margin: 0;
+  margin-bottom: 16px;
+}

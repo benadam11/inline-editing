@@ -1,0 +1,52 @@
+.utility-bar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border-radius: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 35px;
+  padding: 0 8px;
+  box-shadow: 2px 2px 32px 8px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  border: 2px solid #41a0ff;
+  z-index: 2;
+}
+
+.group-item .utility-bar {
+  top: -20px;
+  left: 50%;
+  right: unset;
+  transform: translateX(-50%);
+}
+
+.utility-bar-item {
+  padding: 4px;
+  padding-bottom: 0;
+  margin: 0px 6px;
+  color: #41a0ff;
+}
+
+.utility-bar-item.disabled {
+  opacity: 0.3;
+  pointer-events: none;
+  cursor: no-drop;
+}
+
+.utility-bar-item svg {
+  width: 18px;
+  height: 14px;
+}
+
+.utility-bar-item.left,
+.utility-bar-item.right {
+  transform: rotate(90deg);
+}
+
+@media (min-width: 700px) {
+  .utility-bar-item.left,
+  .utility-bar-item.right {
+    transform: rotate(0deg);
+  }
+}

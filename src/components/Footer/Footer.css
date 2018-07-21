@@ -1,0 +1,24 @@
+.footer {
+  background-color: #000;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  color: #fff;
+}
+
+.footer .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.footer h6 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer .date {
+  margin-left: 8px;
+}

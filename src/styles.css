@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #2a2d35;
+}
+
+.container {
+  font-family: sans-serif;
+  max-width: 1080px;
+  padding: 0px 20px;
+  margin: 0 auto;
+}
+
+.hover,
+.selected {
+  position: relative;
+  z-index: 2;
+}
+
+.hover {
+  outline: 4px solid #41a0ff;
+  z-index: 3;
+}
+
+.selected > .section {
+  outline: 4px solid #41a0ff;
+}
+
+.selected {
+  outline: 2px solid #41a0ff;
+}
+
+.megadraft-editor .DraftEditor-root {
+  font-size: inherit;
+  color: inherit;
+  line-height: inherit;
+}
+
+.megadraft {
+  cursor: text;
+}
+
+.field {
+  cursor: pointer;
+}
+
+.section-wrapper {
+  position: relative;
+}
+
+.field {
+  background-color: whitesmoke;
+}
+
+.field:nth-child(2n) {
+  background-color: #fff;
+}
+
+@media (min-width: 700px) {
+  body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}

@@ -1,0 +1,18 @@
+.header {
+  position: relative;
+  min-height: 600px;
+  background-size: cover;
+  background-position: center center;
+  background-image: url("https://source.unsplash.com/random");
+  color: #fff;
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.header h1 {
+  font-size: 64px;
+  line-height: 1.25;
+}
