@@ -6,10 +6,11 @@ export const AddButton = ({
   addItem = e => {
     console.log("clicked");
   },
-  size = "default"
+  size = "default",
+  id = ""
 }) => {
   return (
-    <button className="add-button" onClick={addItem}>
+    <button className="add-button" onClick={() => addItem(id)}>
       {addIcon}
     </button>
   );

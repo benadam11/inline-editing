@@ -15,6 +15,10 @@ body {
   margin: 0 auto;
 }
 
+.container.inset {
+  max-width: 800px;
+}
+
 .hover,
 .selected {
   position: relative;
@@ -31,6 +35,16 @@ body {
 }
 
 .selected {
+  outline: 2px solid #41a0ff;
+}
+
+.section .selected,
+.section .hover {
+  outline: 3px solid #41a0ff;
+}
+
+.group .selected,
+.group .hover {
   outline: 2px solid #41a0ff;
 }
 
@@ -52,11 +66,11 @@ body {
   position: relative;
 }
 
-.field {
+.website > .field {
   background-color: whitesmoke;
 }
 
-.field:nth-child(2n) {
+.website > .field:nth-child(2n) {
   background-color: #fff;
 }
 

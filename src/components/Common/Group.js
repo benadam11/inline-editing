@@ -11,7 +11,9 @@ export class Group extends React.Component {
           {context => {
             return (
               <div className="group" data-type="Group">
-                {context.isSelected && <UtilityBar type="group" />}
+                {context.isSelected && (
+                  <UtilityBar type="group" actions={this.props.actions} />
+                )}
                 {this.props.children}
               </div>
             );

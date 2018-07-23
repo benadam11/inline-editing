@@ -8,6 +8,7 @@ import {
   AboutSection,
   ContentSection,
   FooterSection,
+  Menu,
   Section,
   UtilityBarItem
 } from "./components";
@@ -17,6 +18,10 @@ const data = [
   {
     id: uuid(),
     component: <ContentSection />
+  },
+  {
+    id: uuid(),
+    component: <Menu />
   },
   {
     id: uuid(),
@@ -53,37 +58,39 @@ class App extends React.Component {
   render() {
     return (
       <HoverProvider>
-        <HeaderSection />
-        {this.state.data.map((item, i) => (
-          <Section
-            key={item.id}
-            actions={[
-              <UtilityBarItem
-                disabled={i < 1}
-                icon="up"
-                itemId={item.id}
-                key="up"
-                action={this.moveItemUp}
-              />,
-              <UtilityBarItem
-                disabled={i === this.state.data.length - 1}
-                icon="down"
-                itemId={item.id}
-                key="down"
-                action={this.moveItemDown}
-              />,
-              <UtilityBarItem
-                icon="trash"
-                itemId={item.id}
-                key="trash"
-                action={this.removeItem}
-              />
-            ]}
-          >
-            {item.component}
-          </Section>
-        ))}
-        <FooterSection />
+        <div className="website">
+          <HeaderSection />
+          {this.state.data.map((item, i) => (
+            <Section
+              key={item.id}
+              actions={[
+                <UtilityBarItem
+                  disabled={i < 1}
+                  icon="up"
+                  itemId={item.id}
+                  key="up"
+                  action={this.moveItemUp}
+                />,
+                <UtilityBarItem
+                  disabled={i === this.state.data.length - 1}
+                  icon="down"
+                  itemId={item.id}
+                  key="down"
+                  action={this.moveItemDown}
+                />,
+                <UtilityBarItem
+                  icon="trash"
+                  itemId={item.id}
+                  key="trash"
+                  action={this.removeItem}
+                />
+              ]}
+            >
+              {item.component}
+            </Section>
+          ))}
+          <FooterSection />
+        </div>
       </HoverProvider>
     );
   }

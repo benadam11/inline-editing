@@ -1,0 +1,49 @@
+.menu {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.category {
+  margin-bottom: 64px;
+}
+
+.category-heading {
+  font-size: 32px;
+}
+
+.category-subheading {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.item {
+  margin-bottom: 24px;
+}
+
+.item-heading {
+  font-size: 24px;
+}
+
+.item-description {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.menu .container > .ghost-item {
+  min-height: 150px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 32px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 60px;
+}
+
+.category .ghost-item {
+  min-height: 100px;
+  justify-content: flex-start;
+}
