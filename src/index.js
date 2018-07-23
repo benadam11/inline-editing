@@ -21,15 +21,15 @@ const data = [
   },
   {
     id: uuid(),
+    component: <AboutSection />
+  },
+  {
+    id: uuid(),
+    component: <AboutSection />
+  },
+  {
+    id: uuid(),
     component: <Menu />
-  },
-  {
-    id: uuid(),
-    component: <AboutSection />
-  },
-  {
-    id: uuid(),
-    component: <AboutSection />
   }
 ];
 

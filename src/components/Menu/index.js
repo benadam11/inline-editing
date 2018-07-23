@@ -68,7 +68,9 @@ export class Menu extends React.Component {
   };
 
   removeCategory = id => {
-    this.setState(actions.removeCategory(id));
+    if (window.confirm("Are you sure you want to delete this category?")) {
+      this.setState(actions.removeCategory(id));
+    }
   };
 
   moveCategoryUp = id => {
@@ -84,7 +86,9 @@ export class Menu extends React.Component {
   };
 
   removeItem = id => {
-    this.setState(actions.removeItem(id));
+    if (window.confirm("Are you sure you want to delete this item?")) {
+      this.setState(actions.removeItem(id));
+    }
   };
 
   moveItemUp = id => {
@@ -99,9 +103,9 @@ export class Menu extends React.Component {
     const { data } = this.state;
     return (
       <Consumer>
-        {({ selectedType }) => {
+        {({ isEditing }) => {
           const showAddCategory =
-            this.props.maxItems > data.categories.length && selectedType;
+            this.props.maxItems > data.categories.length && isEditing;
           return (
             <div className="menu">
               <div className="container inset">
@@ -111,13 +115,13 @@ export class Menu extends React.Component {
                 {data.categories.map(
                   ({ heading, subheading, items, categoryId }, i, arr) => {
                     const showGhostItem =
-                      this.props.maxItems > arr.length && selectedType;
+                      this.props.maxItems > arr.length && isEditing;
                     return (
                       <Group
                         key={categoryId}
                         actions={[
                           <UtilityBarItem
-                            key="up"
+                            key="up1"
                             icon="up"
                             disabled={i < 1}
                             action={this.moveCategoryUp}
@@ -125,13 +129,13 @@ export class Menu extends React.Component {
                           />,
                           <UtilityBarItem
                             disabled={i === arr.length - 1}
-                            key="down"
+                            key="down1"
                             icon="down"
                             action={this.moveCategoryDown}
                             itemId={categoryId}
                           />,
                           <UtilityBarItem
-                            key="trash"
+                            key="trash1"
                             icon="trash"
                             action={this.removeCategory}
                             itemId={categoryId}
@@ -152,21 +156,21 @@ export class Menu extends React.Component {
                                   key={id}
                                   actions={[
                                     <UtilityBarItem
-                                      key="up"
+                                      key="up2"
                                       icon="up"
                                       disabled={i < 1}
                                       action={this.moveItemUp}
                                       itemId={id}
                                     />,
                                     <UtilityBarItem
-                                      key="down"
+                                      key="down2"
                                       icon="down"
                                       disabled={i === items.length - 1}
                                       action={this.moveItemDown}
                                       itemId={id}
                                     />,
                                     <UtilityBarItem
-                                      key="trash"
+                                      key="trash2"
                                       icon="trash"
                                       action={this.removeItem}
                                       itemId={id}

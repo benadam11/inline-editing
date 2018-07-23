@@ -1,6 +1,6 @@
 import React from "react";
 import { Field } from "./Field";
-import { Consumer } from "./HoverContext";
+import { Provider, Consumer } from "./HoverContext";
 import { UtilityBar } from "../UtilityBar/";
 
 export class Section extends React.Component {
@@ -9,14 +9,19 @@ export class Section extends React.Component {
       <Field>
         <Consumer>
           {context => {
+            const { isSelected, selectedSection } = context;
+            const isEditing = selectedSection === this.el;
             return (
-              <div className="section" data-type="Section">
-                {context.isSelected && (
-                  <UtilityBar actions={this.props.actions} />
-                )}
-
-                {this.props.children}
-              </div>
+              <Provider value={{ ...context, isEditing }}>
+                <div
+                  className="section"
+                  data-type="Section"
+                  ref={el => (this.el = el)}
+                >
+                  {isSelected && <UtilityBar actions={this.props.actions} />}
+                  {this.props.children}
+                </div>
+              </Provider>
             );
           }}
         </Consumer>

@@ -7,7 +7,7 @@ export class HoverProvider extends React.Component {
     this.state = {
       field: null,
       selectedField: null,
-      selectedType: "",
+      selectedSection: null,
       onMouseOver: this.handleMouseOver,
       onMouseLeave: this.handleMouseLeave,
       isSelected: false
@@ -38,13 +38,13 @@ export class HoverProvider extends React.Component {
 
   handleSelection = e => {
     const field = e.target.closest(".field");
-    const selectedType = field && field.firstChild.dataset.type;
-    this.setState({ selectedField: field, selectedType });
-    if (selectedType === "Section") {
-      field.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
-      field && field.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
+    const section = e.target.closest(".section");
+    this.setState({ selectedField: field, selectedSection: section });
+    // if (selectedType === "Section") {
+    //   field.scrollIntoView({ behavior: "smooth", block: "start" });
+    // } else {
+    //   field && field.scrollIntoView({ behavior: "smooth", block: "center" });
+    // }
   };
 
   render() {

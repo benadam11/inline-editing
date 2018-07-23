@@ -47,9 +47,8 @@ export class AboutSection extends React.Component {
 
     return (
       <Consumer>
-        {({ selectedType }) => {
-          const showGhostItem =
-            this.props.maxItems > data.length && selectedType;
+        {({ isEditing }) => {
+          const showGhostItem = this.props.maxItems > data.length && isEditing;
           return (
             <div className="about-section">
               <div className="container">
