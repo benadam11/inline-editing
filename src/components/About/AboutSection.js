@@ -1,4 +1,5 @@
 import React from "react";
+import ReactTooltip from "react-tooltip";
 import * as actions from "../actions/";
 import { AddButton, UtilityBarItem } from "../UtilityBar/";
 import { Consumer } from "../Common/HoverContext";
@@ -94,11 +95,17 @@ export class AboutSection extends React.Component {
                     );
                   })}
                   {showGhostItem && (
-                    <div className="ghost-item about-card field">
-                      <div data-type="ghost">
-                        <AddButton addItem={this.addItem} />
+                    <React.Fragment>
+                      <div
+                        className="ghost-item about-card field"
+                        data-tip="Add another item"
+                      >
+                        <div data-type="ghost">
+                          <AddButton addItem={this.addItem} />
+                        </div>
                       </div>
-                    </div>
+                      <ReactTooltip effect="solid" />
+                    </React.Fragment>
                   )}
                 </div>
               </div>

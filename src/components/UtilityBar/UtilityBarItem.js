@@ -1,4 +1,5 @@
 import React from "react";
+import ReactTooltip from "react-tooltip";
 import cx from "classnames";
 import {
   upIcon,
@@ -20,23 +21,39 @@ const iconMap = {
   right: rightIcon
 };
 
+const messageMap = {
+  up: "Move up",
+  down: "Move down",
+  trash: "Delete",
+  more: "More",
+  img: "Change image",
+  left: "Move left",
+  right: "Move right"
+};
+
 export const UtilityBarItem = ({
   icon,
   action,
   itemId = "",
-  disabled = false
+  disabled = false,
+  message = ""
 }) => {
   const classNames = cx(`utility-bar-item ${icon}`, {
     disabled
   });
   return (
-    <div
-      className={classNames}
-      onClick={() => {
-        action(itemId);
-      }}
-    >
-      {iconMap[icon]}
-    </div>
+    <React.Fragment>
+      <div
+        data-tip={message || messageMap[icon]}
+        data-for={icon}
+        className={classNames}
+        onClick={() => {
+          action(itemId);
+        }}
+      >
+        {iconMap[icon]}
+      </div>
+      <ReactTooltip id={icon} effect="solid" />
+    </React.Fragment>
   );
 };

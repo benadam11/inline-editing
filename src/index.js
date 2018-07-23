@@ -1,4 +1,5 @@
 import React from "react";
+import ReactTooltip from "react-tooltip";
 import ReactDOM from "react-dom";
 import uuid from "uuid";
 import * as actions from "./components/actions";

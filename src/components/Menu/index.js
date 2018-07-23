@@ -1,4 +1,5 @@
 import React from "react";
+import ReactTooltip from "react-tooltip";
 import uuid from "uuid";
 import { Consumer } from "../Common/HoverContext";
 import { Element, Group, GroupItem } from "../index";
@@ -195,14 +196,25 @@ export class Menu extends React.Component {
                             }
                           )}
                           {showGhostItem && (
-                            <div className="ghost-item field">
-                              <div data-type="ghost">
-                                <AddButton
-                                  addItem={this.addItem}
-                                  id={categoryId}
-                                />
+                            <React.Fragment>
+                              <div
+                                className="ghost-item field"
+                                data-tip="Add another item"
+                                data-for="add-item"
+                              >
+                                <div data-type="ghost">
+                                  <AddButton
+                                    addItem={this.addItem}
+                                    id={categoryId}
+                                  />
+                                </div>
                               </div>
-                            </div>
+                              <ReactTooltip
+                                id="add-item"
+                                effect="solid"
+                                place="left"
+                              />
+                            </React.Fragment>
                           )}
                         </div>
                       </Group>
@@ -210,11 +222,14 @@ export class Menu extends React.Component {
                   }
                 )}
                 {showAddCategory && (
-                  <div className="ghost-item field">
-                    <div data-type="ghost">
-                      <AddButton addItem={this.addCategory} />
+                  <React.Fragment>
+                    <div className="ghost-item field" data-tip="Add a category">
+                      <div data-type="ghost">
+                        <AddButton addItem={this.addCategory} />
+                      </div>
                     </div>
-                  </div>
+                    <ReactTooltip effect="solid" />
+                  </React.Fragment>
                 )}
                 <h5>
                   <Element value={data.subheading} />
