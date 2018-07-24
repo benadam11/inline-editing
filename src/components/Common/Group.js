@@ -8,10 +8,10 @@ export class Group extends React.Component {
     return (
       <Field>
         <Consumer>
-          {context => {
+          {({ isSelected }) => {
             return (
               <div className="group" data-type="Group">
-                {context.isSelected && (
+                {isSelected && (
                   <UtilityBar type="group" actions={this.props.actions} />
                 )}
                 {this.props.children}

@@ -1,10 +1,12 @@
 import React from "react";
+import ReactTooltip from "react-tooltip";
 import { Field } from "./Field";
 import { Provider, Consumer } from "./HoverContext";
-import { UtilityBar } from "../UtilityBar/";
+import { UtilityBar, AddButton } from "../UtilityBar/";
 
 export class Section extends React.Component {
   render() {
+    const { index } = this.props;
     return (
       <Field>
         <Consumer>
@@ -18,9 +20,26 @@ export class Section extends React.Component {
                   data-type="Section"
                   ref={el => (this.el = el)}
                 >
+                  {Boolean(index < 1) && (
+                    <div
+                      className="add-button-wrapper top"
+                      data-tip="Add section"
+                    >
+                      <AddButton addItem={this.props.addSection} />
+                    </div>
+                  )}
                   {isSelected && <UtilityBar actions={this.props.actions} />}
                   {this.props.children}
+                  {Boolean(index + 1) && (
+                    <div
+                      className="add-button-wrapper bottom"
+                      data-tip="Add section"
+                    >
+                      <AddButton addItem={this.props.addSection} />
+                    </div>
+                  )}
                 </div>
+                <ReactTooltip effect="solid" />
               </Provider>
             );
           }}

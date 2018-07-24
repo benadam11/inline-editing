@@ -5,3 +5,4 @@ export * from "./Menu";
 export * from "./Footer";
 export * from "./UtilityBar";
 export * from "./Common";
+export * from "./AddSection";

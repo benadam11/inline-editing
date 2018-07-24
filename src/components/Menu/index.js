@@ -199,7 +199,7 @@ export class Menu extends React.Component {
                             <React.Fragment>
                               <div
                                 className="ghost-item field"
-                                data-tip="Add another item"
+                                data-tip="Add item"
                                 data-for="add-item"
                               >
                                 <div data-type="ghost">
@@ -223,7 +223,7 @@ export class Menu extends React.Component {
                 )}
                 {showAddCategory && (
                   <React.Fragment>
-                    <div className="ghost-item field" data-tip="Add a category">
+                    <div className="ghost-item field" data-tip="Add category">
                       <div data-type="ghost">
                         <AddButton addItem={this.addCategory} />
                       </div>

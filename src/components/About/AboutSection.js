@@ -98,7 +98,7 @@ export class AboutSection extends React.Component {
                     <React.Fragment>
                       <div
                         className="ghost-item about-card field"
-                        data-tip="Add another item"
+                        data-tip="Add item"
                       >
                         <div data-type="ghost">
                           <AddButton addItem={this.addItem} />
