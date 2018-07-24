@@ -11,7 +11,7 @@ export class Section extends React.Component {
       <Field>
         <Consumer>
           {context => {
-            const { isSelected, selectedSection } = context;
+            const { selectedSection, isHovered } = context;
             const isEditing = selectedSection === this.el;
             return (
               <Provider value={{ ...context, isEditing }}>
@@ -28,7 +28,9 @@ export class Section extends React.Component {
                       <AddButton addItem={this.props.addSection} />
                     </div>
                   )}
-                  {isSelected && <UtilityBar actions={this.props.actions} />}
+                  {(isHovered || isEditing) && (
+                    <UtilityBar actions={this.props.actions} />
+                  )}
                   {this.props.children}
                   {Boolean(index + 1) && (
                     <div

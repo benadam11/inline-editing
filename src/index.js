@@ -105,7 +105,6 @@ class App extends React.Component {
             {this.state.data.map((item, i) => (
               <Section
                 addSection={this.toggleFlyout}
-                index={i}
                 key={item.id}
                 actions={[
                   <UtilityBarItem
@@ -128,6 +127,7 @@ class App extends React.Component {
                     key="trash"
                     action={this.removeItem}
                   />
+                  // <UtilityBarItem icon="more" key="more" />
                 ]}
               >
                 {item.component}

@@ -48,8 +48,9 @@ export class AboutSection extends React.Component {
 
     return (
       <Consumer>
-        {({ isEditing }) => {
-          const showGhostItem = this.props.maxItems > data.length && isEditing;
+        {({ isEditing, isHovered }) => {
+          const showGhostItem =
+            this.props.maxItems > data.length && isEditing /*|| isHovered*/;
           return (
             <div className="about-section">
               <div className="container">
@@ -99,6 +100,7 @@ export class AboutSection extends React.Component {
                       <div
                         className="ghost-item about-card field"
                         data-tip="Add item"
+                        onClick={this.addItem}
                       >
                         <div data-type="ghost">
                           <AddButton addItem={this.addItem} />

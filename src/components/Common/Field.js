@@ -13,7 +13,9 @@ export class Field extends React.Component {
           const classNames = cx("field", { selected, hover });
 
           return (
-            <Provider value={{ ...context, isSelected: !!selected }}>
+            <Provider
+              value={{ ...context, isSelected: !!selected, isHovered: hover }}
+            >
               <div
                 ref={ref => (this.field = ref)}
                 className={classNames}

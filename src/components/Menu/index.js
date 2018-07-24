@@ -104,9 +104,10 @@ export class Menu extends React.Component {
     const { data } = this.state;
     return (
       <Consumer>
-        {({ isEditing }) => {
+        {({ isEditing, isHovered }) => {
           const showAddCategory =
-            this.props.maxItems > data.categories.length && isEditing;
+            this.props.maxItems > data.categories.length &&
+            isEditing /*|| isHovered*/;
           return (
             <div className="menu">
               <div className="container inset">
@@ -116,7 +117,8 @@ export class Menu extends React.Component {
                 {data.categories.map(
                   ({ heading, subheading, items, categoryId }, i, arr) => {
                     const showGhostItem =
-                      this.props.maxItems > arr.length && isEditing;
+                      this.props.maxItems > arr.length &&
+                      isEditing /*|| isHovered*/;
                     return (
                       <Group
                         key={categoryId}
@@ -223,7 +225,11 @@ export class Menu extends React.Component {
                 )}
                 {showAddCategory && (
                   <React.Fragment>
-                    <div className="ghost-item field" data-tip="Add category">
+                    <div
+                      className="ghost-item field"
+                      data-tip="Add category"
+                      onClick={this.addCategory}
+                    >
                       <div data-type="ghost">
                         <AddButton addItem={this.addCategory} />
                       </div>

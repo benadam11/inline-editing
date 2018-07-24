@@ -24,13 +24,15 @@ export class Element extends React.Component {
   render() {
     const { editorState } = this.state;
     return (
-      <MegadraftEditor
-        ref="editor"
-        editorState={editorState}
-        onChange={this.onChange}
-        sidebarRendererFn={() => null}
-        {...this.props}
-      />
+      <span className="element">
+        <MegadraftEditor
+          ref="editor"
+          editorState={editorState}
+          onChange={this.onChange}
+          sidebarRendererFn={() => null}
+          {...this.props}
+        />
+      </span>
     );
   }
 }

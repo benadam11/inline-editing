@@ -5,14 +5,14 @@ const move = (arr, from, offset) => {
 };
 
 const newItem = () => ({
-  id: uuid,
+  id: uuid(),
   heading: "New Item",
   subheading: "Add a description about this item",
   price: "12"
 });
 
 const newCategory = () => ({
-  categoryId: uuid,
+  categoryId: uuid(),
   heading: "New Category",
   subheading: "Add a description about this category",
   items: [newItem(), newItem()]

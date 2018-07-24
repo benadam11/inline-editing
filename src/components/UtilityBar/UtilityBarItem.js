@@ -25,7 +25,7 @@ const messageMap = {
   up: "Move up",
   down: "Move down",
   trash: "Delete",
-  more: "More",
+  more: "More settings",
   img: "Change image",
   left: "Move left",
   right: "Move right"
@@ -48,7 +48,7 @@ export const UtilityBarItem = ({
         data-for={icon}
         className={classNames}
         onClick={() => {
-          action(itemId);
+          action && action(itemId);
         }}
       >
         {iconMap[icon]}

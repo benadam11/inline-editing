@@ -8,10 +8,10 @@ export class GroupItem extends React.Component {
     return (
       <Field>
         <Consumer>
-          {context => {
+          {({ isSelected, isHovered }) => {
             return (
               <div className="group-item" data-type="GroupItem">
-                {context.isSelected && (
+                {isSelected /*|| isHovered*/ && (
                   <UtilityBar type="groupItem" actions={this.props.actions} />
                 )}
                 {this.props.children}

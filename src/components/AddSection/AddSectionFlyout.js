@@ -12,6 +12,7 @@ export const AddSectionFlyout = ({
 }) => {
   const items = ({ name }, i) => (
     <CategoryList
+      key={i}
       name={name}
       index={i}
       selectedIndex={selectedIndex}
@@ -42,7 +43,9 @@ export const AddSectionFlyout = ({
           <div className="preview-container">
             {Array.from({
               length: categories.find(c => c.name === selectedIndex).count
-            }).map(item => <Preview toggleFlyout={toggleFlyout} />)}
+            }).map((item, i) => (
+              <Preview key={i} toggleFlyout={toggleFlyout} />
+            ))}
           </div>
         </div>
       </aside>

@@ -5,6 +5,7 @@ const HoverContext = React.createContext({
   selectedSection: null,
   isEditing: false,
   isSelected: false,
+  isHovered: false,
   onMouseOver: () => {},
   onMouseLeave: () => {}
 });
