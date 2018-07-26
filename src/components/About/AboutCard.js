@@ -5,13 +5,17 @@ import "./AboutCard.css";
 export const AboutCard = ({ img, heading, text }) => {
   return (
     <div className="about-card">
-      <figure style={{ backgroundImage: `url(${img})` }} />
-      <div className="content">
-        <h4>
-          <Element value={heading} />
-        </h4>
-        <Element value={text} />
-      </div>
+      {!img.hidden && <figure style={{ backgroundImage: `url(${img.url})` }} />}
+      {(!heading.hidden || !text.hidden) && (
+        <div className="content">
+          {!heading.hidden && (
+            <h4>
+              <Element value={heading.content} />
+            </h4>
+          )}
+          {!text.hidden && <Element value={text.content} />}
+        </div>
+      )}
     </div>
   );
 };

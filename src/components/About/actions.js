@@ -22,36 +22,42 @@ export const newItem = () => ({
 });
 
 export const moveLeft = id => ({ data }) => {
-  const pos = data.map(item => item.id).indexOf(id);
-  move(data, pos, -1);
+  const pos = data.items.map(item => item.id).indexOf(id);
+  move(data.items, pos, -1);
   return { data };
 };
 
 export const moveRight = id => ({ data }) => {
-  const pos = data.map(item => item.id).indexOf(id);
-  move(data, pos, 1);
+  const pos = data.items.map(item => item.id).indexOf(id);
+  move(data.items, pos, 1);
   return { data };
 };
 
-export const addItem = prevState => ({
-  data: prevState.data.concat(newItem())
-});
+export const addItem = ({ data }) => {
+  data.items = data.items.concat(newItem());
+  return { data };
+};
 
-export const removeItem = id => prevState => {
-  const data = prevState.data.filter(item => item.id !== id);
+export const removeItem = id => ({ data }) => {
+  data.items = data.items.filter(item => item.id !== id);
   return { data };
 };
 
 export const updateImage = id => ({ data }) => {
-  data.find(
+  data.items.find(
     item => item.id === id
   ).img.url = `https://source.unsplash.com/random/${uuid()}`;
 
   return { data };
 };
 
+export const toggleField = key => ({ data }) => {
+  data[key].hidden = !data[key].hidden;
+  return { data };
+};
+
 export const toggleGroupField = (key, id) => ({ data }) => {
-  const item = data.find(item => item.id === id);
+  const item = data.items.find(item => item.id === id);
   item[key].hidden = !item[key].hidden;
   return { data };
 };

@@ -11,10 +11,10 @@ export class FooterSection extends React.Component {
           <div className="container">
             <div className="content">
               <h3>
-                <Element value="Powered by GoDaddy" />
+                <Element value="Powered by My Business" />
               </h3>
               <h6>
-                <Element value="Copyright Ben Adam" />
+                <Element value="Copyright" />
                 <span className="date">{date}</span>
               </h6>
             </div>

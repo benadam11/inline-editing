@@ -1,4 +1,5 @@
 import React from "react";
+import uuid from "uuid";
 import ReactTooltip from "react-tooltip";
 import cx from "classnames";
 import {
@@ -41,11 +42,12 @@ export const UtilityBarItem = ({
   const classNames = cx(`utility-bar-item ${icon}`, {
     disabled
   });
+  const id = uuid();
   return (
     <React.Fragment>
       <div
         data-tip={message || messageMap[icon]}
-        data-for={icon}
+        data-for={id}
         className={classNames}
         onClick={() => {
           action && action(itemId);
@@ -53,7 +55,7 @@ export const UtilityBarItem = ({
       >
         {iconMap[icon]}
       </div>
-      <ReactTooltip id={icon} effect="solid" />
+      <ReactTooltip id={id} effect="solid" />
     </React.Fragment>
   );
 };

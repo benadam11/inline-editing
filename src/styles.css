@@ -27,7 +27,7 @@ body {
 }
 
 .hover {
-  outline: 4px solid #1875d0;
+  outline: 4px solid rgba(25, 118, 210, 0.6);
   z-index: 3;
 }
 
@@ -41,7 +41,7 @@ body {
 
 .section .selected,
 .section .hover {
-  outline: 3px solid #1875d0;
+  outline-width: 3px;
   outline-offset: 20px;
 }
 
@@ -59,6 +59,18 @@ body {
 
 .megadraft {
   cursor: text;
+}
+
+.megadraft-editor .toolbar__wrapper {
+  background-color: #2a2d35;
+}
+
+.megadraft-editor .toolbar__arrow {
+  border-color: #2a2d35 transparent transparent;
+}
+
+.public-DraftEditorPlaceholder-root {
+  width: 100%;
 }
 
 .field {
@@ -108,5 +120,6 @@ body {
 
   .__react_component_tooltip {
     display: inline-block;
+    white-space: nowrap;
   }
 }

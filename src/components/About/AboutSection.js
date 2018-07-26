@@ -1,13 +1,20 @@
 import React from "react";
 import ReactTooltip from "react-tooltip";
-import * as actions from "../actions/";
-import { AddButton, UtilityBarItem } from "../UtilityBar/";
+import * as actions from "./actions";
+import { AddButton, UtilityBarItem, FieldToggleItem } from "../UtilityBar/";
 import { Consumer } from "../Common/HoverContext";
-import { GroupItem, Element } from "../index";
+import { GroupItem, Element, Section } from "../index";
 import { AboutCard } from "./AboutCard";
 import "./AboutSection.css";
 
-const data = Array.from({ length: 3 }).map(item => actions.newItem());
+const items = Array.from({ length: 3 }).map(item => actions.newItem());
+const initialData = {
+  heading: {
+    content: "Gear & Guides",
+    hidden: false
+  },
+  items
+};
 
 export class AboutSection extends React.Component {
   static defaultProps = {
@@ -17,7 +24,7 @@ export class AboutSection extends React.Component {
   constructor() {
     super(...arguments);
     this.state = {
-      data
+      data: initialData
     };
   }
 
@@ -43,78 +50,111 @@ export class AboutSection extends React.Component {
     this.setState(actions.moveRight(id));
   };
 
+  toggleGroup = (key, id) => {
+    this.setState(actions.toggleGroupField(key, id));
+  };
+
+  toggleField = key => {
+    this.setState(actions.toggleField(key));
+  };
+
   render() {
     const { data } = this.state;
 
     return (
-      <Consumer>
-        {({ isEditing, isHovered }) => {
-          const showGhostItem =
-            this.props.maxItems > data.length && isEditing /*|| isHovered*/;
-          return (
-            <div className="about-section">
-              <div className="container">
-                <h2>
-                  <Element value="Gear & Guides" />
-                </h2>
-                <div className="about-items">
-                  {data.map((item, i) => {
-                    return (
-                      <GroupItem
-                        key={item.id}
-                        actions={[
-                          <UtilityBarItem
-                            key="img"
-                            icon="img"
-                            action={this.updateImage}
-                            itemId={item.id}
-                          />,
-                          <UtilityBarItem
-                            key="left"
-                            disabled={i < 1}
-                            icon="left"
-                            action={this.moveItemLeft}
-                            itemId={item.id}
-                          />,
-                          <UtilityBarItem
-                            key="right"
-                            disabled={i === data.length - 1}
-                            icon="right"
-                            action={this.moveItemRight}
-                            itemId={item.id}
-                          />,
-                          <UtilityBarItem
-                            key="trash"
-                            icon="trash"
-                            action={this.removeItem}
-                            itemId={item.id}
-                          />
-                        ]}
-                      >
-                        <AboutCard {...item} />
-                      </GroupItem>
-                    );
-                  })}
-                  {showGhostItem && (
-                    <React.Fragment>
-                      <div
-                        className="ghost-item about-card field"
-                        data-tip="Add item"
-                        onClick={this.addItem}
-                      >
-                        <div data-type="ghost">
-                          <AddButton addItem={this.addItem} />
-                        </div>
-                      </div>
-                      <ReactTooltip effect="solid" />
-                    </React.Fragment>
+      <Section
+        actions={this.props.actions}
+        fields={[
+          <FieldToggleItem
+            key="headding-toggle"
+            field="heading"
+            hidden={data.heading.hidden}
+            handleToggle={this.toggleField}
+          />
+        ]}
+      >
+        <Consumer>
+          {({ isEditing, isHovered }) => {
+            const showGhostItem =
+              this.props.maxItems > data.items.length &&
+              isEditing /*|| isHovered*/;
+            return (
+              <div className="about-section">
+                <div className="container">
+                  {!data.heading.hidden && (
+                    <h2>
+                      <Element value="Gear & Guides" />
+                    </h2>
                   )}
+                  <div className="about-items">
+                    {data.items.map(({ id, ...item }, i) => {
+                      return (
+                        <GroupItem
+                          key={id}
+                          fields={Object.keys(item).map(key => {
+                            return (
+                              <FieldToggleItem
+                                key={key}
+                                id={id}
+                                field={key}
+                                hidden={item[key].hidden}
+                                handleToggle={this.toggleGroup}
+                              />
+                            );
+                          })}
+                          actions={[
+                            <UtilityBarItem
+                              key="img"
+                              icon="img"
+                              action={this.updateImage}
+                              itemId={id}
+                            />,
+                            <UtilityBarItem
+                              key="left"
+                              disabled={i < 1}
+                              icon="left"
+                              action={this.moveItemLeft}
+                              itemId={id}
+                            />,
+                            <UtilityBarItem
+                              key="right"
+                              disabled={i === data.length - 1}
+                              icon="right"
+                              action={this.moveItemRight}
+                              itemId={id}
+                            />,
+                            <UtilityBarItem
+                              key="trash"
+                              icon="trash"
+                              action={this.removeItem}
+                              itemId={id}
+                            />
+                          ]}
+                        >
+                          <AboutCard {...item} />
+                        </GroupItem>
+                      );
+                    })}
+                    {showGhostItem && (
+                      <React.Fragment>
+                        <div
+                          className="ghost-item about-card field"
+                          data-tip="Add Group"
+                        >
+                          <div data-type="ghost">
+                            <AddButton addItem={this.addItem} />
+                          </div>
+                        </div>
+                        <ReactTooltip effect="solid" />
+                      </React.Fragment>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        }}
-      </Consumer>
+            );
+          }}
+        </Consumer>
+      </Section>
     );
   }
 }

@@ -2,7 +2,7 @@ import React from "react";
 import ReactTooltip from "react-tooltip";
 import { Field } from "./Field";
 import { Provider, Consumer } from "./HoverContext";
-import { UtilityBar, AddButton } from "../UtilityBar/";
+import { UtilityBar, AddButton, LayoutChanger } from "../UtilityBar/";
 
 export class Section extends React.Component {
   render() {
@@ -29,7 +29,11 @@ export class Section extends React.Component {
                     </div>
                   )}
                   {(isHovered || isEditing) && (
-                    <UtilityBar actions={this.props.actions} />
+                    <UtilityBar
+                      actions={this.props.actions}
+                      fields={this.props.fields}
+                      layout={<LayoutChanger />}
+                    />
                   )}
                   {this.props.children}
                   {Boolean(index + 1) && (

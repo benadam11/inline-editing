@@ -19,19 +19,15 @@ import "./styles.css";
 const data = [
   {
     id: uuid(),
-    component: <ContentSection />
+    Component: ContentSection
   },
   {
     id: uuid(),
-    component: <AboutSection />
+    Component: AboutSection
   },
   {
     id: uuid(),
-    component: <AboutSection />
-  },
-  {
-    id: uuid(),
-    component: <Menu />
+    Component: Menu
   }
 ];
 
@@ -102,36 +98,33 @@ class App extends React.Component {
         <HoverProvider>
           <div className="website">
             <HeaderSection />
-            {this.state.data.map((item, i) => (
-              <Section
-                addSection={this.toggleFlyout}
-                key={item.id}
+            {this.state.data.map(({ Component, id }, i) => (
+              <Component
+                key={id}
                 actions={[
                   <UtilityBarItem
                     disabled={i < 1}
                     icon="up"
-                    itemId={item.id}
                     key="up"
+                    itemId={id}
                     action={this.moveItemUp}
                   />,
                   <UtilityBarItem
                     disabled={i === this.state.data.length - 1}
                     icon="down"
-                    itemId={item.id}
                     key="down"
+                    itemId={id}
                     action={this.moveItemDown}
                   />,
                   <UtilityBarItem
                     icon="trash"
-                    itemId={item.id}
                     key="trash"
+                    itemId={id}
                     action={this.removeItem}
                   />
                   // <UtilityBarItem icon="more" key="more" />
                 ]}
-              >
-                {item.component}
-              </Section>
+              />
             ))}
             <FooterSection />
           </div>

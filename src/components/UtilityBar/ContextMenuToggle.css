@@ -1,0 +1,104 @@
+.visibility-toggle {
+  cursor: pointer;
+}
+
+.visibility-toggle svg {
+  transition: transform 0.3s ease-in-out;
+}
+
+.visibility-toggle:hover svg {
+  transform: scale(0.9);
+}
+
+.dropdown-container {
+  position: absolute;
+  top: 60px;
+  right: 0px;
+  background-color: #fff;
+  border: 1px solid #1976d2;
+  box-shadow: 0px 0px 32px 8px rgba(0, 0, 0, 0.1);
+  width: 275px;
+  border-radius: 4px;
+  z-index: 10;
+}
+
+.dropdown-group {
+  padding: 20px 24px;
+  border-bottom: 1px solid #1976d2;
+}
+
+.dropdown-group:last-child {
+  border-bottom: none;
+}
+
+.toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.toggle-row:last-child {
+  margin-bottom: 0px;
+}
+
+.dropdown-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  display: block;
+  font-weight: bold;
+}
+
+.field-title {
+  text-transform: capitalize;
+}
+.react-toggle-track,
+.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: #fff;
+  border: 1px solid #1976d2;
+}
+.react-toggle--checked .react-toggle-track,
+.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: #1976d2;
+}
+
+.react-toggle-track-x,
+.react-toggle-track-check {
+  display: none;
+}
+
+.react-toggle-thumb {
+  border-color: transparent;
+  background-color: #d9d9d9;
+  width: 20px;
+  height: 20px;
+  top: 2px;
+  left: 2px;
+}
+
+.react-toggle--checked .react-toggle-thumb {
+  border-color: #1976d2;
+  left: 28px;
+  background-color: white;
+}
+
+.layout-preview {
+  min-height: 70px;
+  background-color: #d9d9d9;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.brand-btn {
+  background-color: #1976d2;
+  color: #fff;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}

@@ -12,7 +12,11 @@ export class Group extends React.Component {
             return (
               <div className="group" data-type="Group">
                 {isSelected /*|| isHovered*/ && (
-                  <UtilityBar type="group" actions={this.props.actions} />
+                  <UtilityBar
+                    type="group"
+                    actions={this.props.actions}
+                    fields={this.props.fields}
+                  />
                 )}
                 {this.props.children}
               </div>

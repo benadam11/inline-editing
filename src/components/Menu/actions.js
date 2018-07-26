@@ -6,15 +6,30 @@ const move = (arr, from, offset) => {
 
 const newItem = () => ({
   id: uuid(),
-  heading: "New Item",
-  subheading: "Add a description about this item",
-  price: "12"
+  heading: {
+    content: "New Item",
+    hidden: false
+  },
+  subheading: {
+    content: "Add a description about this item",
+    hidden: false
+  },
+  price: {
+    content: "12",
+    hidden: false
+  }
 });
 
 const newCategory = () => ({
   categoryId: uuid(),
-  heading: "New Category",
-  subheading: "Add a description about this category",
+  heading: {
+    content: "New Category",
+    hidden: false
+  },
+  subheading: {
+    content: "Add a description about this category",
+    hidden: false
+  },
   items: [newItem(), newItem()]
 });
 
@@ -72,5 +87,24 @@ export const moveCategoryLeft = id => ({ data }) => {
 export const moveCategoryRight = id => ({ data }) => {
   const pos = data.categories.map(item => item.id).indexOf(id);
   move(data.categories, pos, 1);
+  return { data };
+};
+
+export const toggleField = key => ({ data }) => {
+  data[key].hidden = !data[key].hidden;
+  return { data };
+};
+
+export const toggleCategoryField = (key, id) => ({ data }) => {
+  const item = data.categories.find(item => item.categoryId === id);
+  item[key].hidden = !item[key].hidden;
+  return { data };
+};
+
+export const toggleItemField = (key, id) => ({ data }) => {
+  data.categories.forEach(category => {
+    const item = category.items.find(item => item.id === id);
+    item[key].hidden = !item[key].hidden;
+  });
   return { data };
 };

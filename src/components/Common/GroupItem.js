@@ -12,7 +12,11 @@ export class GroupItem extends React.Component {
             return (
               <div className="group-item" data-type="GroupItem">
                 {isSelected /*|| isHovered*/ && (
-                  <UtilityBar type="groupItem" actions={this.props.actions} />
+                  <UtilityBar
+                    type="groupItem"
+                    actions={this.props.actions}
+                    fields={this.props.fields}
+                  />
                 )}
                 {this.props.children}
               </div>
