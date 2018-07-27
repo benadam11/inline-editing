@@ -1,53 +1,53 @@
-import React from "react";
-import { Provider } from "./HoverContext";
+import React from 'react';
+import { Provider } from './HoverContext';
 
 export class HoverProvider extends React.Component {
-  constructor() {
-    super(...arguments);
-    this.state = {
-      field: null,
-      selectedField: null,
-      selectedSection: null,
-      onMouseOver: this.handleMouseOver,
-      onMouseLeave: this.handleMouseLeave,
-      isSelected: false,
-      isHovered: false
-    };
-  }
+	constructor() {
+		super(...arguments);
+		this.state = {
+			field: null,
+			selectedField: null,
+			selectedSection: null,
+			onMouseOver: this.handleMouseOver,
+			onMouseLeave: this.handleMouseLeave,
+			isSelected: false,
+			isHovered: false
+		};
+	}
 
-  componentDidMount() {
-    document.addEventListener("click", this.handleSelection);
-  }
+	componentDidMount() {
+		document.addEventListener('click', this.handleSelection);
+	}
 
-  componentWillUnmount() {
-    document.removeEventListener("click", this.handleSelection);
-  }
+	componentWillUnmount() {
+		document.removeEventListener('click', this.handleSelection);
+	}
 
-  handleMouseOver = e => {
-    const field = e.target.closest(".field");
-    if (this.state.field !== field) {
-      this.setState({ field });
-    }
-  };
+	handleMouseOver = e => {
+		const field = e.target.closest('.field');
+		if (this.state.field !== field) {
+			this.setState({ field });
+		}
+	};
 
-  handleMouseLeave = e => {
-    const field = e.target.closest(".field");
-    if (this.state.field === field) {
-      this.setState({ field: null });
-    }
-  };
+	handleMouseLeave = e => {
+		const field = e.target.closest('.field');
+		if (this.state.field === field) {
+			this.setState({ field: null });
+		}
+	};
 
-  handleSelection = e => {
-    const field = e.target.closest(".field");
-    const section = e.target.closest(".section");
-    this.setState({ selectedField: field, selectedSection: section });
-    // const selectedType = field && field.firstChild.dataset.type;
-    // if (selectedType === "Section") {
-    //   field.scrollIntoView({ behavior: "smooth", block: "start" });
-    // }
-  };
+	handleSelection = e => {
+		const field = e.target.closest('.field');
+		const section = e.target.closest('.section');
+		this.setState({ selectedField: field, selectedSection: section });
+		// const selectedType = field && field.firstChild.dataset.type;
+		// if (selectedType === "Section") {
+		//   field.scrollIntoView({ behavior: "smooth", block: "start" });
+		// }
+	};
 
-  render() {
-    return <Provider value={this.state}>{this.props.children}</Provider>;
-  }
+	render() {
+		return <Provider value={this.state}>{this.props.children}</Provider>;
+	}
 }
