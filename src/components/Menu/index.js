@@ -130,6 +130,7 @@ export class Menu extends React.Component {
 		const { categories, ...fields } = data;
 		return (
 			<Section
+				layout="menu"
 				actions={this.props.actions}
 				fields={Object.keys(fields).map(key => {
 					return (
@@ -251,10 +252,10 @@ export class Menu extends React.Component {
 														{showGhostItem && (
 															<React.Fragment>
 																<div
-																	className="ghost-item field"
+																	className="field"
 																	data-tip="Add item"
 																	data-for="add-item">
-																	<div data-type="ghost">
+																	<div data-type="ghost" className="ghost-item">
 																		<AddButton
 																			addItem={this.addItem}
 																			id={categoryId}
@@ -275,8 +276,10 @@ export class Menu extends React.Component {
 									)}
 									{showAddCategory && (
 										<React.Fragment>
-											<div className="ghost-item field" data-tip="Add category">
-												<div data-type="ghost">
+											<div className="field" data-tip="Add category">
+												<div
+													data-type="ghost"
+													className="ghost-item about-card">
 													<AddButton addItem={this.addCategory} />
 												</div>
 											</div>

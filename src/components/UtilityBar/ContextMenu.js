@@ -1,8 +1,14 @@
 import React from 'react';
 
-export const ContextMenu = ({ fields, layout, alignment, backgroundColor }) => {
+export const ContextMenu = ({
+	fields,
+	layout,
+	alignment,
+	backgroundColor,
+	style
+}) => {
 	return (
-		<div className="dropdown-container">
+		<div className="dropdown-container" style={style}>
 			{Boolean(fields) && (
 				<div className="dropdown-group">
 					<span className="dropdown-title">Fields</span>

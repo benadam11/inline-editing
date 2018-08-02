@@ -11,10 +11,13 @@ export class Field extends React.Component {
 					const selected = selectedField === this.field;
 					const hover = selectedField !== this.field && field === this.field;
 					const classNames = cx('field', { selected, hover });
-
+					const newContext = {
+						...context,
+						isSelected: !!selected,
+						isHovered: hover
+					};
 					return (
-						<Provider
-							value={{ ...context, isSelected: !!selected, isHovered: hover }}>
+						<Provider value={newContext}>
 							<div
 								ref={ref => (this.field = ref)}
 								className={classNames}

@@ -1,58 +1,78 @@
 .utility-bar-wrapper {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  display: flex;
-  z-index: 4;
-}
-
-.utility-bar {
-  border-radius: 4px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 40px;
-  padding: 0 8px;
-  box-shadow: 2px 2px 32px 8px rgba(0, 0, 0, 0.05);
-  background-color: #1875d0;
-  border: 2px solid #1875d0;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	display: flex;
+	z-index: 3;
 }
 
 .group .utility-bar-wrapper,
 .group-item .utility-bar-wrapper {
-  top: -42px;
-  left: 50%;
-  right: unset;
-  transform: translateX(-50%);
+	top: -32px;
+	left: 50%;
+	right: unset;
+	transform: translateX(-50%);
+}
+
+.hover .utility-bar-wrapper {
+	z-index: 1;
+}
+
+.utility-bar {
+	border-radius: 4px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 40px;
+	padding: 0 8px;
+	box-shadow: 2px 2px 32px 8px rgba(0, 0, 0, 0.05);
+	background-color: #1875d0;
+	border: 2px solid #1875d0;
+}
+
+.header .utility-bar-wrapper {
+	top: unset;
+	bottom: 20px;
 }
 
 .utility-bar-item {
-  padding: 4px;
-  padding-bottom: 0;
-  margin: 0px 6px;
-  /* color: #41a0ff; */
-  color: #fff;
+	padding: 4px;
+	padding-bottom: 0;
+	margin: 0px 6px;
+	/* color: #41a0ff; */
+	color: #fff;
 }
 
 .utility-bar-item.disabled {
-  opacity: 0.3;
-  pointer-events: none;
-  cursor: no-drop;
+	opacity: 0.3;
+	pointer-events: none;
+	cursor: no-drop;
 }
 
 .utility-bar-item svg {
-  width: 18px;
-  height: 14px;
+	width: 18px;
+	height: 14px;
 }
 
 .utility-bar-item.left,
 .utility-bar-item.right {
-  transform: rotate(90deg);
+	transform: rotate(90deg);
 }
 
 @media (min-width: 700px) {
-  .utility-bar-item.left,
-  .utility-bar-item.right {
-    transform: rotate(0deg);
-  }
+	.utility-bar-item.left,
+	.utility-bar-item.right {
+		transform: rotate(0deg);
+	}
+
+	/* .section:not(.selected) > .utility-bar-wrapper {
+		opacity: 0;
+		transform: translateX(10px);
+		transition: all 0.3s ease-in-out;
+	}
+
+	.section:hover > .utility-bar-wrapper {
+		opacity: 1;
+		transform: translateX(0px);
+	} */
 }

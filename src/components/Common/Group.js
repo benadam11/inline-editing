@@ -1,6 +1,7 @@
 import React from 'react';
 import { UtilityBar } from '../UtilityBar/';
 import { Field } from './Field';
+import { AnimateIn } from './AnimateIn';
 import { Consumer } from './HoverContext';
 
 export class Group extends React.Component {

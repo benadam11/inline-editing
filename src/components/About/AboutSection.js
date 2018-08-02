@@ -63,6 +63,7 @@ export class AboutSection extends React.Component {
 
 		return (
 			<Section
+				layout="about"
 				actions={this.props.actions}
 				fields={[
 					<FieldToggleItem
@@ -82,7 +83,10 @@ export class AboutSection extends React.Component {
 								<div className="container">
 									{!data.heading.hidden && (
 										<h2>
-											<Element value="Gear & Guides" />
+											<Element
+												value="Gear & Guides"
+												placeholder="Enter a heading"
+											/>
 										</h2>
 									)}
 									<div className="about-items">
@@ -117,7 +121,7 @@ export class AboutSection extends React.Component {
 														/>,
 														<UtilityBarItem
 															key="right"
-															disabled={i === data.length - 1}
+															disabled={i === data.items.length - 1}
 															icon="right"
 															action={this.moveItemRight}
 															itemId={id}
@@ -135,10 +139,10 @@ export class AboutSection extends React.Component {
 										})}
 										{showGhostItem && (
 											<React.Fragment>
-												<div
-													className="ghost-item about-card field"
-													data-tip="Add Group">
-													<div data-type="ghost">
+												<div className="field" data-tip="Add Group">
+													<div
+														data-type="ghost"
+														className="ghost-item about-card">
 														<AddButton addItem={this.addItem} />
 													</div>
 												</div>

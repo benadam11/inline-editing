@@ -24,9 +24,14 @@ export class ContentSection extends React.Component {
 	constructor() {
 		super(...arguments);
 		this.state = {
+			hasText: true,
 			data: initialData
 		};
 	}
+
+	handleTextChange = hasText => {
+		this.setState({ hasText });
+	};
 
 	handleToggle = key => {
 		this.setState(({ data }) => {
@@ -39,6 +44,8 @@ export class ContentSection extends React.Component {
 		const { heading, text, CTA } = this.state.data;
 		return (
 			<Section
+				layout="content"
+				hasText={this.state.hasText}
 				actions={this.props.actions}
 				fields={Object.keys(this.state.data).map(key => (
 					<FieldToggleItem
@@ -53,17 +60,27 @@ export class ContentSection extends React.Component {
 						{!heading.hidden && (
 							<h3>
 								<Element
+									maxChars={14}
+									handleChange={this.handleTextChange}
 									value={heading.content}
 									placeholder="Enter a heading"
 								/>
 							</h3>
 						)}
 						{!text.hidden && (
-							<Element value={text.content} placeholder="Enter some text" />
+							<Element
+								handleChange={this.handleTextChange}
+								value={text.content}
+								placeholder="Enter some text"
+							/>
 						)}
 						{!CTA.hidden && (
 							<button className="cta-button">
-								<Element value={CTA.content} placeholder="Button" />
+								<Element
+									handleChange={this.handleTextChange}
+									value={CTA.content}
+									placeholder="Button"
+								/>
 							</button>
 						)}
 					</div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { UtilityBar } from '../UtilityBar/';
 import { Field } from './Field';
 import { Consumer } from './HoverContext';
+import { AnimateIn } from './AnimateIn';
 
 export class GroupItem extends React.Component {
 	render() {

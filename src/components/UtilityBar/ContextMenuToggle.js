@@ -2,7 +2,7 @@ import React from 'react';
 import uuid from 'uuid';
 import ReactTooltip from 'react-tooltip';
 import { ContextMenu } from './ContextMenu';
-import { moreIcon } from '../Common/icons';
+import { AnimateIn, moreIcon } from '../Common';
 import './ContextMenuToggle.css';
 
 export class ContextMenuToggle extends React.Component {
@@ -22,22 +22,40 @@ export class ContextMenuToggle extends React.Component {
 	}
 
 	handleClick = e => {
-		const dropdown = this.dropdown;
-		const toggle = this.toggle;
-		const inToggle = toggle && toggle.contains(e.target);
-		const inDropdown = dropdown && dropdown.contains(e.target);
-		if (this.state.showDropdown && !inDropdown && !inToggle) {
-			this.toggleDropdown();
+		const inToggle = this.toggle && this.toggle.contains(e.target);
+		const inDropdown = this.dropdown && this.dropdown.contains(e.target);
+		if (!inDropdown && !inToggle) {
+			this.setState({ showDropdown: false });
 		}
 	};
 
 	toggleDropdown = () => {
-		this.setState(prevState => ({ showDropdown: !prevState.showDropdown }));
+		const { top } = this.toggle.getBoundingClientRect();
+		const upper = window.innerHeight * 0.45 > top;
+		this.setState(
+			prevState => ({
+				showDropdown: !prevState.showDropdown,
+				upper
+			}),
+			() => {
+				const { height } = this.dropdown
+					.querySelector('.dropdown-container')
+					.getBoundingClientRect();
+				this.setState({ height });
+			}
+		);
 	};
 
 	render() {
+		const { showDropdown, upper, height } = this.state;
 		const { fields, layout } = this.props;
 		const id = uuid();
+
+		const position = upper
+			? { top: '40px' }
+			: {
+					top: `-${height + 60}px`
+			  };
 		return (
 			<React.Fragment>
 				<div
@@ -48,13 +66,12 @@ export class ContextMenuToggle extends React.Component {
 					data-for={id}>
 					{moreIcon}
 				</div>
-
-				{this.state.showDropdown && (
-					<div ref={el => (this.dropdown = el)}>
-						<ContextMenu fields={fields} layout={layout} />
-					</div>
-				)}
 				<ReactTooltip id={id} effect="solid" />
+				<AnimateIn show={showDropdown}>
+					<div ref={el => (this.dropdown = el)}>
+						<ContextMenu fields={fields} layout={layout} style={position} />
+					</div>
+				</AnimateIn>
 			</React.Fragment>
 		);
 	}

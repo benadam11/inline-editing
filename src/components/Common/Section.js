@@ -16,7 +16,9 @@ export class Section extends React.Component {
 						return (
 							<Provider value={{ ...context, isEditing }}>
 								<div
-									className="section"
+									className={`${this.props.layout} section ${
+										isEditing ? 'selected' : ''
+									}`}
 									data-type="Section"
 									ref={el => (this.el = el)}>
 									{Boolean(index < 1) && (
@@ -28,9 +30,11 @@ export class Section extends React.Component {
 									)}
 									{(isHovered || isEditing) && (
 										<UtilityBar
+											vertical
+											hasText={this.props.hasText}
 											actions={this.props.actions}
 											fields={this.props.fields}
-											layout={<LayoutChanger />}
+											// layout={<LayoutChanger layout={this.props.layout} />}
 										/>
 									)}
 									{this.props.children}

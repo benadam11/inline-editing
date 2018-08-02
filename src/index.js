@@ -93,49 +93,52 @@ class App extends React.Component {
 	render() {
 		const { showFlyout, selectedIndex } = this.state;
 		return (
-			<div className={showFlyout ? 'show-add-section' : ''}>
-				<HoverProvider>
-					<div className="website">
-						<HeaderSection />
-						{this.state.data.map(({ Component, id }, i) => (
-							<Component
-								key={id}
-								actions={[
-									<UtilityBarItem
-										disabled={i < 1}
-										icon="up"
-										key="up"
-										itemId={id}
-										action={this.moveItemUp}
-									/>,
-									<UtilityBarItem
-										disabled={i === this.state.data.length - 1}
-										icon="down"
-										key="down"
-										itemId={id}
-										action={this.moveItemDown}
-									/>,
-									<UtilityBarItem
-										icon="trash"
-										key="trash"
-										itemId={id}
-										action={this.removeItem}
-									/>
-									// <UtilityBarItem icon="more" key="more" />
-								]}
-							/>
-						))}
-						<FooterSection />
-					</div>
+			<React.Fragment>
+				<div className={showFlyout ? 'show-add-section' : ''}>
+					<HoverProvider>
+						<div className="website">
+							<HeaderSection />
+							{this.state.data.map(({ Component, id }, i) => (
+								<Component
+									key={id}
+									actions={[
+										<UtilityBarItem
+											disabled={i < 1}
+											icon="up"
+											key="up"
+											itemId={id}
+											action={this.moveItemUp}
+										/>,
+										<UtilityBarItem
+											disabled={i === this.state.data.length - 1}
+											icon="down"
+											key="down"
+											itemId={id}
+											action={this.moveItemDown}
+										/>,
+										<UtilityBarItem
+											icon="trash"
+											key="trash"
+											itemId={id}
+											action={this.removeItem}
+										/>
+										// <UtilityBarItem icon="more" key="more" />
+									]}
+								/>
+							))}
+							<FooterSection />
+						</div>
 
-					<AddSectionFlyout
-						toggleFlyout={this.toggleFlyout}
-						handleSelect={this.handleSelect}
-						handleChange={this.handleChange}
-						selectedIndex={selectedIndex}
-					/>
-				</HoverProvider>
-			</div>
+						<AddSectionFlyout
+							toggleFlyout={this.toggleFlyout}
+							handleSelect={this.handleSelect}
+							handleChange={this.handleChange}
+							selectedIndex={selectedIndex}
+						/>
+					</HoverProvider>
+				</div>
+				<div className="portal-cotainer" />
+			</React.Fragment>
 		);
 	}
 }
