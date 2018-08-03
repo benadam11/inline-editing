@@ -2,7 +2,7 @@ import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import uuid from 'uuid';
 import { Consumer } from '../Common/HoverContext';
-import { Element, Group, GroupItem, Section } from '../index';
+import { Element, Group, GroupItem, Item, Section } from '../index';
 import { AddButton, UtilityBarItem, FieldToggleItem } from '../UtilityBar/';
 import { MenuItem } from './MenuItem';
 import { MenuCategory } from './MenuCategory';
@@ -152,10 +152,12 @@ export class Menu extends React.Component {
 								<div className="container inset">
 									{!data.heading.hidden && (
 										<h2>
-											<Element
-												value={data.heading.content}
-												placeholder="Enter a section heading"
-											/>
+											<Item>
+												<Element
+													value={data.heading.content}
+													placeholder="Enter a section heading"
+												/>
+											</Item>
 										</h2>
 									)}
 									{categories.map(
@@ -288,10 +290,12 @@ export class Menu extends React.Component {
 									)}
 									{!data.subheading.hidden && (
 										<h5>
-											<Element
-												value={data.subheading.content}
-												placeholder="Enter a footnote"
-											/>
+											<Item>
+												<Element
+													value={data.subheading.content}
+													placeholder="Enter a footnote"
+												/>
+											</Item>
 										</h5>
 									)}
 								</div>

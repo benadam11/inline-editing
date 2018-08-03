@@ -8,10 +8,11 @@
 
 .group .utility-bar-wrapper,
 .group-item .utility-bar-wrapper {
-	top: -32px;
-	left: 50%;
-	right: unset;
-	transform: translateX(-50%);
+	top: -60px;
+	right: -10px;
+	/* right: unset; */
+	/* left: 50%; */
+	/* transform: translateX(-50%); */
 }
 
 .hover .utility-bar-wrapper {

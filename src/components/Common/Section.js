@@ -15,7 +15,7 @@ export class Section extends React.Component {
 						const isEditing = selectedSection === this.el;
 						return (
 							<Provider value={{ ...context, isEditing }}>
-								<div
+								<section
 									className={`${this.props.layout} section ${
 										isEditing ? 'selected' : ''
 									}`}
@@ -28,7 +28,7 @@ export class Section extends React.Component {
 											<AddButton addItem={this.props.addSection} />
 										</div>
 									)}
-									{(isHovered || isEditing) && (
+									{isEditing && (
 										<UtilityBar
 											vertical
 											hasText={this.props.hasText}
@@ -45,7 +45,7 @@ export class Section extends React.Component {
 											<AddButton addItem={this.props.addSection} />
 										</div>
 									)}
-								</div>
+								</section>
 								<ReactTooltip effect="solid" />
 							</Provider>
 						);

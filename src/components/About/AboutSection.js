@@ -3,7 +3,7 @@ import ReactTooltip from 'react-tooltip';
 import * as actions from './actions';
 import { AddButton, UtilityBarItem, FieldToggleItem } from '../UtilityBar/';
 import { Consumer } from '../Common/HoverContext';
-import { GroupItem, Element, Section } from '../index';
+import { Item, Group, Element, Section } from '../index';
 import { AboutCard } from './AboutCard';
 import './AboutSection.css';
 
@@ -92,7 +92,7 @@ export class AboutSection extends React.Component {
 									<div className="about-items">
 										{data.items.map(({ id, ...item }, i) => {
 											return (
-												<GroupItem
+												<Group
 													key={id}
 													fields={Object.keys(item).map(key => {
 														return (
@@ -134,7 +134,7 @@ export class AboutSection extends React.Component {
 														/>
 													]}>
 													<AboutCard {...item} />
-												</GroupItem>
+												</Group>
 											);
 										})}
 										{showGhostItem && (

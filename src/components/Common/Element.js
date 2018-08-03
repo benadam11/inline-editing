@@ -14,6 +14,7 @@ export class Element extends React.Component {
 		super(...arguments);
 		this.state = {
 			length: this.props.value.length,
+			isFocused: false,
 			editorState: editorStateFromRaw(
 				convertToRaw(ContentState.createFromText(this.props.value))
 			)
@@ -31,7 +32,7 @@ export class Element extends React.Component {
 	};
 
 	render() {
-		const { editorState, length } = this.state;
+		const { editorState, length, isFocused } = this.state;
 		const { maxChars } = this.props;
 		const showError = maxChars && length > maxChars;
 		const errorMessage = (
@@ -40,16 +41,15 @@ export class Element extends React.Component {
 			</AnimateIn>
 		);
 		return (
-			<span className="element item">
+			<span className="element">
 				<MegadraftEditor
-					autoCapitalize="off"
-					autoComplete="off"
-					autoCorrect="off"
 					ref="editor"
+					// onFocus={() => this.setState({ isFocused: true })}
+					// onBlur={() => this.setState({ isFocused: false })}
+					// shouldDisplayToolbarFn={() => isFocused}
 					placeholder={this.props.placeholder}
 					editorState={editorState}
 					onChange={this.onChange}
-					onBlur={this.handleBlur}
 					sidebarRendererFn={() => null}
 					{...this.props}
 				/>

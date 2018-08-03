@@ -1,7 +1,7 @@
 import React from 'react';
 import uuid from 'uuid';
 import { FieldToggleItem, UtilityBarItem } from '../UtilityBar/';
-import { Element, Section } from '../index';
+import { Element, Section, Item } from '../index';
 import './Header.css';
 
 export class HeaderSection extends React.Component {
@@ -67,19 +67,23 @@ export class HeaderSection extends React.Component {
 						<div className="container">
 							{!fields.heading.hidden && (
 								<h1>
-									<Element
-										Toolbar={() => null}
-										value={fields.heading.content}
-										placeholder="Enter a heading"
-									/>
+									<Item>
+										<Element
+											Toolbar={() => null}
+											value={fields.heading.content}
+											placeholder="Enter a heading"
+										/>
+									</Item>
 								</h1>
 							)}
 							{!fields.subheading.hidden && (
 								<h3>
-									<Element
-										value={fields.subheading.content}
-										placeholder="Enter a subheading"
-									/>
+									<Item>
+										<Element
+											value={fields.subheading.content}
+											placeholder="Enter a subheading"
+										/>
+									</Item>
 								</h3>
 							)}
 						</div>

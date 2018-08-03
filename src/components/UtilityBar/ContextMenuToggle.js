@@ -23,6 +23,7 @@ export class ContextMenuToggle extends React.Component {
 
 	handleClick = e => {
 		const inToggle = this.toggle && this.toggle.contains(e.target);
+		console.log(e.target);
 		const inDropdown = this.dropdown && this.dropdown.contains(e.target);
 		if (!inDropdown && !inToggle) {
 			this.setState({ showDropdown: false });
@@ -30,32 +31,12 @@ export class ContextMenuToggle extends React.Component {
 	};
 
 	toggleDropdown = () => {
-		const { top } = this.toggle.getBoundingClientRect();
-		const upper = window.innerHeight * 0.45 > top;
-		this.setState(
-			prevState => ({
-				showDropdown: !prevState.showDropdown,
-				upper
-			}),
-			() => {
-				const { height } = this.dropdown
-					.querySelector('.dropdown-container')
-					.getBoundingClientRect();
-				this.setState({ height });
-			}
-		);
+		this.setState(prevState => ({ showDropdown: !prevState.showDropdown }));
 	};
 
 	render() {
-		const { showDropdown, upper, height } = this.state;
 		const { fields, layout } = this.props;
 		const id = uuid();
-
-		const position = upper
-			? { top: '40px' }
-			: {
-					top: `-${height + 60}px`
-			  };
 		return (
 			<React.Fragment>
 				<div
@@ -66,10 +47,11 @@ export class ContextMenuToggle extends React.Component {
 					data-for={id}>
 					{moreIcon}
 				</div>
+
 				<ReactTooltip id={id} effect="solid" />
-				<AnimateIn show={showDropdown}>
+				<AnimateIn show={this.state.showDropdown}>
 					<div ref={el => (this.dropdown = el)}>
-						<ContextMenu fields={fields} layout={layout} style={position} />
+						<ContextMenu fields={fields} layout={layout} />
 					</div>
 				</AnimateIn>
 			</React.Fragment>
