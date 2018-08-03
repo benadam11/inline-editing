@@ -83,10 +83,12 @@ export class AboutSection extends React.Component {
 								<div className="container">
 									{!data.heading.hidden && (
 										<h2>
-											<Element
-												value="Gear & Guides"
-												placeholder="Enter a heading"
-											/>
+											<Item>
+												<Element
+													value="Gear & Guides"
+													placeholder="Enter a heading"
+												/>
+											</Item>
 										</h2>
 									)}
 									<div className="about-items">
