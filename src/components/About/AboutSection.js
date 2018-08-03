@@ -3,7 +3,7 @@ import ReactTooltip from 'react-tooltip';
 import * as actions from './actions';
 import { AddButton, UtilityBarItem, FieldToggleItem } from '../UtilityBar/';
 import { Consumer } from '../Common/HoverContext';
-import { Item, Group, Element, Section } from '../index';
+import { Item, Group, Element, Section, GhostItem } from '../index';
 import { AboutCard } from './AboutCard';
 import './AboutSection.css';
 
@@ -140,18 +140,11 @@ export class AboutSection extends React.Component {
 												</Group>
 											);
 										})}
-										{showGhostItem && (
-											<React.Fragment>
-												<div className="field" data-tip="Add Group">
-													<div
-														data-type="ghost"
-														className="ghost-item about-card">
-														<AddButton addItem={this.addItem} />
-													</div>
-												</div>
-												<ReactTooltip effect="solid" />
-											</React.Fragment>
-										)}
+										<GhostItem
+											card
+											show={showGhostItem}
+											action={this.addItem}
+										/>
 									</div>
 								</div>
 							</div>

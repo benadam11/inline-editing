@@ -20,34 +20,57 @@ body {
 	max-width: 800px;
 }
 
+.section,
+.header,
+.group,
+.item,
+.group-item {
+	outline-color: transparent;
+}
+
 .hover,
 .selected {
 	position: relative;
-	/* z-index: 2; */
 }
 
 .field.selected > .section,
 .field.hover > .section,
 .section:hover,
-.selected.section {
-	outline: 6px solid #1875d0;
+.selected.section,
+.selected.header {
+	transition: all 0.1s ease-out;
+	outline-color: #1976d2;
+	outline-style: solid;
+	outline-width: 2px;
+	outline-offset: -2px;
 }
+
+/* .field.selected > .group,
+.field.hover > .group {
+	transition: all 0.1s ease-out;
+	outline-color: #1976d2;
+	outline-style: solid;
+	outline-width: 2px;
+	outline-offset: 10px;
+} */
 
 .field.selected > .group,
-.field.hover > .group {
-	outline: 4px solid #1875d0;
-	outline-offset: 10px;
-}
-
+.field.hover > .group,
 .field.selected > .group-item,
 .field.hover > .group-item {
-	outline: 2px solid #1875d0;
+	transition: all 0.1s ease-out;
+	outline-color: #1976d2;
+	outline-style: solid;
+	outline-width: 2px;
 	outline-offset: 10px;
 }
 
 .field.hover > .item {
-	outline: 1px solid #1875d0;
-	outline-offset: 0px;
+	transition: all 0.1s ease-out;
+	outline-color: #1976d2;
+	outline-style: solid;
+	outline-width: 1px;
+	outline-offset: -1px;
 }
 
 .selected .megadraft {

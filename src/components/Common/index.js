@@ -1,6 +1,7 @@
 export * from './Group';
 export * from './GroupItem';
 export * from './Item';
+export * from './GhostItem';
 export * from './Element';
 export * from './Section';
 export * from './HoverProvider';

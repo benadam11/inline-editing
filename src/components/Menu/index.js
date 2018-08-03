@@ -1,8 +1,9 @@
 import React from 'react';
+import AnimateHeight from 'react-animate-height';
 import ReactTooltip from 'react-tooltip';
 import uuid from 'uuid';
 import { Consumer } from '../Common/HoverContext';
-import { Element, Group, GroupItem, Item, Section } from '../index';
+import { Element, Group, GroupItem, Item, Section, GhostItem } from '../index';
 import { AddButton, UtilityBarItem, FieldToggleItem } from '../UtilityBar/';
 import { MenuItem } from './MenuItem';
 import { MenuCategory } from './MenuCategory';
@@ -252,43 +253,21 @@ export class Menu extends React.Component {
 																</GroupItem>
 															);
 														})}
-														{showGhostItem && (
-															<React.Fragment>
-																<div
-																	className="field"
-																	data-tip="Add item"
-																	data-for="add-item">
-																	<div data-type="ghost" className="ghost-item">
-																		<AddButton
-																			addItem={this.addItem}
-																			id={categoryId}
-																		/>
-																	</div>
-																</div>
-																<ReactTooltip
-																	id="add-item"
-																	effect="solid"
-																	place="left"
-																/>
-															</React.Fragment>
-														)}
+														<GhostItem
+															show={showGhostItem}
+															action={this.addItem}
+															actionId={categoryId}
+														/>
 													</MenuCategory>
 												</Group>
 											);
 										}
 									)}
-									{showAddCategory && (
-										<React.Fragment>
-											<div className="field" data-tip="Add category">
-												<div
-													data-type="ghost"
-													className="ghost-item about-card">
-													<AddButton addItem={this.addCategory} />
-												</div>
-											</div>
-											<ReactTooltip effect="solid" />
-										</React.Fragment>
-									)}
+									<GhostItem
+										card
+										show={showAddCategory}
+										action={this.addCategory}
+									/>
 									{!data.subheading.hidden && (
 										<h5>
 											<Item>

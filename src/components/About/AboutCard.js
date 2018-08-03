@@ -4,7 +4,7 @@ import './AboutCard.css';
 
 export const AboutCard = ({ img, heading, text }) => {
 	return (
-		<div className="about-card">
+		<div className="about-card card">
 			{!img.hidden && <figure style={{ backgroundImage: `url(${img.url})` }} />}
 			{(!heading.hidden || !text.hidden) && (
 				<div className="content">
