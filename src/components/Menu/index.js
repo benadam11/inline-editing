@@ -141,7 +141,8 @@ export class Menu extends React.Component {
 							handleToggle={this.toggleSectionField}
 						/>
 					);
-				})}>
+				})}
+				{...this.props}>
 				<Consumer>
 					{({ isEditing, isHovered }) => {
 						const showAddCategory =

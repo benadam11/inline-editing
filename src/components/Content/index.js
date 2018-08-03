@@ -54,7 +54,8 @@ export class ContentSection extends React.Component {
 						hidden={this.state.data[key].hidden}
 						handleToggle={this.handleToggle}
 					/>
-				))}>
+				))}
+				{...this.props}>
 				<div className="content-section">
 					<div className="container">
 						{!heading.hidden && (

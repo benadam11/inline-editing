@@ -72,7 +72,8 @@ export class AboutSection extends React.Component {
 						hidden={data.heading.hidden}
 						handleToggle={this.toggleField}
 					/>
-				]}>
+				]}
+				{...this.props}>
 				<Consumer>
 					{({ isEditing, isHovered }) => {
 						const showGhostItem =

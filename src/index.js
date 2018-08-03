@@ -100,7 +100,9 @@ class App extends React.Component {
 							<HeaderSection />
 							{this.state.data.map(({ Component, id }, i) => (
 								<Component
+									index={i}
 									key={id}
+									addSection={this.toggleFlyout}
 									actions={[
 										<UtilityBarItem
 											disabled={i < 1}

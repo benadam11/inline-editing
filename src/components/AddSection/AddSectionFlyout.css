@@ -12,6 +12,7 @@
 	transform: translateX(600px);
 	transition: transform 0.3s ease-in-out;
 	color: #fff;
+	box-shadow: 0px 0px 32px 8px rgba(0, 0, 0, 0.3);
 }
 
 .show-add-section .add-section-overlay {
@@ -22,7 +23,7 @@
 .add-section-overlay {
 	display: none;
 	position: fixed;
-	z-index: 3;
+	z-index: 9;
 	top: 0;
 	left: 0;
 	width: 100vw;

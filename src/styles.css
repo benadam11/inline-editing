@@ -23,17 +23,8 @@ body {
 .hover,
 .selected {
 	position: relative;
-	z-index: 2;
-	/* outline: 2px solid #1875d0; */
+	/* z-index: 2; */
 }
-
-/* .hover {
-	outline: 2px solid rgba(25, 118, 210, 1);
-}
-
-.selected {
-	outline: 2px solid #1875d0;
-} */
 
 .field.selected > .section,
 .field.hover > .section,
@@ -129,19 +120,6 @@ body {
 	left: 50%;
 	z-index: -1;
 }
-
-/* .element:before {
-  content: "✏️";
-  position: absolute;
-  left: -30px;
-  top: 50%;
-  display: none;
-  font-size: 16px;
-}
-
-.element:hover:before {
-  display: block;
-} */
 
 @media (min-width: 700px) {
 	body {
