@@ -31,15 +31,9 @@ export class ContextMenuToggle extends React.Component {
 		}
 	};
 
-	setDropdownPosition = () => {
-		const { height } = this.dropdown
-			.querySelector('.dropdown-container')
-			.getBoundingClientRect();
-	};
-
 	toggleDropdown = () => {
 		const isUpper =
-			window.innerHeight * 0.35 > this.toggle.getBoundingClientRect().top;
+			window.innerHeight * 0.75 > this.toggle.getBoundingClientRect().top;
 		this.setState(
 			prevState => ({ showDropdown: !prevState.showDropdown, isUpper }),
 			() => {

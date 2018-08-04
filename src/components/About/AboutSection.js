@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactTooltip from 'react-tooltip';
 import * as actions from './actions';
-import { AddButton, UtilityBarItem, FieldToggleItem } from '../UtilityBar/';
+import { UtilityBarItem, FieldToggleItem } from '../UtilityBar/';
 import { Consumer } from '../Common/HoverContext';
 import { Item, Group, Element, Section, GhostItem } from '../index';
 import { AboutCard } from './AboutCard';
@@ -142,6 +141,7 @@ export class AboutSection extends React.Component {
 										})}
 										<GhostItem
 											card
+											label="Add Card"
 											show={showGhostItem}
 											action={this.addItem}
 										/>

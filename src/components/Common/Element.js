@@ -1,4 +1,5 @@
 import React from 'react';
+import { Consumer } from './HoverContext';
 import { AnimateIn } from './AnimateIn';
 import { ContentState, convertToRaw } from 'draft-js';
 import { MegadraftEditor, editorStateFromRaw } from 'megadraft';

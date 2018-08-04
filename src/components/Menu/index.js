@@ -1,10 +1,8 @@
 import React from 'react';
-import AnimateHeight from 'react-animate-height';
-import ReactTooltip from 'react-tooltip';
 import uuid from 'uuid';
 import { Consumer } from '../Common/HoverContext';
 import { Element, Group, GroupItem, Item, Section, GhostItem } from '../index';
-import { AddButton, UtilityBarItem, FieldToggleItem } from '../UtilityBar/';
+import { UtilityBarItem, FieldToggleItem } from '../UtilityBar/';
 import { MenuItem } from './MenuItem';
 import { MenuCategory } from './MenuCategory';
 import * as actions from './actions';
@@ -254,6 +252,8 @@ export class Menu extends React.Component {
 															);
 														})}
 														<GhostItem
+															label="Add Menu Item"
+															labelPosition="left"
 															show={showGhostItem}
 															action={this.addItem}
 															actionId={categoryId}
@@ -265,6 +265,7 @@ export class Menu extends React.Component {
 									)}
 									<GhostItem
 										card
+										label="Add Menu Category"
 										show={showAddCategory}
 										action={this.addCategory}
 									/>

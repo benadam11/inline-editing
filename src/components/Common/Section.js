@@ -24,7 +24,7 @@ export class Section extends React.Component {
 									{Boolean(index < 1) && (
 										<div
 											className="add-button-wrapper top"
-											data-tip="Add section">
+											data-tip="Add Section">
 											<AddButton addItem={this.props.addSection} />
 										</div>
 									)}

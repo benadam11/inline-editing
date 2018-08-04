@@ -12,7 +12,11 @@ export const MenuItem = ({ heading, subheading, price }) => {
 				)}
 				{!price.hidden && (
 					<h4 className="menu-item-price">
-						<Element value={price.content} placeholder="$12" />
+						<Element
+							Toolbar={() => null}
+							value={price.content}
+							placeholder="$12"
+						/>
 					</h4>
 				)}
 			</div>
