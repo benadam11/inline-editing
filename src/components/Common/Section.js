@@ -11,7 +11,7 @@ export class Section extends React.Component {
 			<Field>
 				<Consumer>
 					{context => {
-						const { selectedSection, isHovered } = context;
+						const { selectedSection } = context;
 						const isEditing = selectedSection === this.el;
 						return (
 							<Provider value={{ ...context, isEditing }}>

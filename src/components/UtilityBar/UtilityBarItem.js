@@ -39,19 +39,19 @@ export const UtilityBarItem = ({
 	disabled = false,
 	message = ''
 }) => {
+	const id = uuid();
+	const handleClick = e => action && action(itemId, e);
 	const classNames = cx(`utility-bar-item ${icon}`, {
 		disabled
 	});
-	const id = uuid();
+
 	return (
 		<React.Fragment>
 			<div
 				data-tip={message || messageMap[icon]}
 				data-for={id}
 				className={classNames}
-				onClick={() => {
-					action && action(itemId);
-				}}>
+				onClick={handleClick}>
 				{iconMap[icon]}
 			</div>
 			<ReactTooltip id={id} effect="solid" />

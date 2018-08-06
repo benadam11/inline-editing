@@ -41,10 +41,16 @@ export class HoverProvider extends React.Component {
 		const field = e.target.closest('.field');
 		const section = e.target.closest('.section');
 		this.setState({ selectedField: field, selectedSection: section });
-		// const selectedType = field && field.firstChild.dataset.type;
-		// if (selectedType === 'Section') {
-		// 	field.scrollIntoView({ behavior: 'smooth', block: 'start' });
-		// }
+		this.scrollToSection(e);
+	};
+
+	scrollToSection = e => {
+		const section = e.target.closest('.section');
+		const up = e.target.closest('.up');
+		const down = e.target.closest('.down');
+		if (section && (up || down)) {
+			section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		}
 	};
 
 	render() {

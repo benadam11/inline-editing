@@ -110,6 +110,7 @@ class App extends React.Component {
 											key="up"
 											itemId={id}
 											action={this.moveItemUp}
+											el={this.el}
 										/>,
 										<UtilityBarItem
 											disabled={i === this.state.data.length - 1}
