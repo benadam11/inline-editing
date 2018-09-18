@@ -7,11 +7,13 @@ export class HoverProvider extends React.Component {
 		this.state = {
 			field: null,
 			selectedField: null,
-			selectedSection: null,
-			isSelected: false,
 			isHovered: false,
+			danger: false,
+			overlay: false,
 			onMouseOver: this.handleMouseOver,
-			onMouseLeave: this.handleMouseLeave
+			onMouseLeave: this.handleMouseLeave,
+			showOverlay: this.showOverlay,
+			hideOverlay: this.hideOverlay
 		};
 	}
 
@@ -37,11 +39,30 @@ export class HoverProvider extends React.Component {
 		}
 	};
 
+	toggleDangerOverlay = e => {
+		this.setState(prev => ({ danger: !prev.danger }));
+	};
+
+	showOverlay = e => {
+		this.setState({ overlay: true });
+		if (e.target.className === 'utility-bar-item trash') {
+			this.setState({ danger: true });
+		} else {
+			this.setState({ danger: false });
+		}
+	};
+
+	hideOverlay = () => {
+		this.setState({ overlay: false, danger: false });
+	};
+
 	handleSelection = e => {
 		const field = e.target.closest('.field');
 		const section = e.target.closest('.section');
 		this.setState({ selectedField: field, selectedSection: section });
-		this.scrollToSection(e);
+		if (e.target.className === 'utility-bar-item trash') {
+			this.setState({ danger: false });
+		}
 	};
 
 	scrollToSection = e => {

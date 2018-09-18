@@ -1,26 +1,23 @@
 import React from 'react';
-import { UtilityBar } from '../UtilityBar/';
-import { Field } from './Field';
+import { Field, Base } from './';
 import { Consumer } from './HoverContext';
-import { AnimateIn } from './AnimateIn';
 
 export class GroupItem extends React.Component {
 	render() {
 		return (
 			<Field>
 				<Consumer>
-					{({ isSelected, isHovered }) => {
+					{({ isSelected, isHovered, overlay, danger }) => {
 						return (
-							<div className="group-item" data-type="GroupItem">
-								{isSelected /*|| isHovered*/ && (
-									<UtilityBar
-										type="groupItem"
-										actions={this.props.actions}
-										fields={this.props.fields}
-									/>
-								)}
+							<Base
+								className="group-item"
+								actions={this.props.actions}
+								overlay={overlay}
+								danger={danger}
+								isSelected={isSelected}
+								isHovered={isHovered}>
 								{this.props.children}
-							</div>
+							</Base>
 						);
 					}}
 				</Consumer>

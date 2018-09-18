@@ -2,7 +2,7 @@ import React from 'react';
 import * as actions from './actions';
 import { UtilityBarItem, FieldToggleItem } from '../UtilityBar/';
 import { Consumer } from '../Common/HoverContext';
-import { Item, Group, Element, Section, GhostItem } from '../index';
+import { Section, Group, Element } from '../index';
 import { AboutCard } from './AboutCard';
 import './AboutSection.css';
 
@@ -35,6 +35,10 @@ export class AboutSection extends React.Component {
 		this.setState(actions.addItem);
 	};
 
+	duplicateItem = i => {
+		this.setState(actions.duplicateItem(i));
+	};
+
 	removeItem = id => {
 		if (window.confirm('Are you sure you want to delete this group?')) {
 			this.setState(actions.removeItem(id));
@@ -59,98 +63,79 @@ export class AboutSection extends React.Component {
 
 	render() {
 		const { data } = this.state;
+		const fields = [
+			<FieldToggleItem
+				key="headding-toggle"
+				field="heading"
+				hidden={data.heading.hidden}
+				handleToggle={this.toggleField}
+			/>
+		];
 
 		return (
-			<Section
-				layout="about"
-				actions={this.props.actions}
-				fields={[
-					<FieldToggleItem
-						key="headding-toggle"
-						field="heading"
-						hidden={data.heading.hidden}
-						handleToggle={this.toggleField}
-					/>
-				]}
-				{...this.props}>
-				<Consumer>
-					{({ isEditing, isHovered }) => {
-						const showGhostItem =
-							this.props.maxItems > data.items.length &&
-							isEditing /*|| isHovered*/;
-						return (
-							<div className="about-section">
-								<div className="container">
-									{!data.heading.hidden && (
-										<h2>
-											<Item>
-												<Element
-													value="Gear & Guides"
-													placeholder="Enter a heading"
-												/>
-											</Item>
-										</h2>
-									)}
-									<div className="about-items">
-										{data.items.map(({ id, ...item }, i) => {
+			<Section layout="about" actions={this.props.actions} {...this.props}>
+				<div className="about-section">
+					<div className="container">
+						{!data.heading.hidden && (
+							<h2>
+								<Element value="Gear & Guides" placeholder="Enter a heading" />
+							</h2>
+						)}
+						<div className="about-items">
+							{data.items.map(({ id, ...item }, i) => {
+								return (
+									<Group
+										key={id}
+										fields={Object.keys(item).map(key => {
 											return (
-												<Group
-													key={id}
-													fields={Object.keys(item).map(key => {
-														return (
-															<FieldToggleItem
-																key={key}
-																id={id}
-																field={key}
-																hidden={item[key].hidden}
-																handleToggle={this.toggleGroup}
-															/>
-														);
-													})}
-													actions={[
-														<UtilityBarItem
-															key="img"
-															icon="img"
-															action={this.updateImage}
-															itemId={id}
-														/>,
-														<UtilityBarItem
-															key="left"
-															disabled={i < 1}
-															icon="left"
-															action={this.moveItemLeft}
-															itemId={id}
-														/>,
-														<UtilityBarItem
-															key="right"
-															disabled={i === data.items.length - 1}
-															icon="right"
-															action={this.moveItemRight}
-															itemId={id}
-														/>,
-														<UtilityBarItem
-															key="trash"
-															icon="trash"
-															action={this.removeItem}
-															itemId={id}
-														/>
-													]}>
-													<AboutCard {...item} />
-												</Group>
+												<FieldToggleItem
+													key={key}
+													id={id}
+													field={key}
+													hidden={item[key].hidden}
+													handleToggle={this.toggleGroup}
+												/>
 											);
 										})}
-										<GhostItem
-											card
-											label="Add Card"
-											show={showGhostItem}
-											action={this.addItem}
-										/>
-									</div>
-								</div>
-							</div>
-						);
-					}}
-				</Consumer>
+										actions={[
+											<UtilityBarItem
+												key="about-add-item"
+												icon="duplicate"
+												message="Duplicate Group"
+												action={this.duplicateItem}
+												itemId={i}
+											/>,
+											<UtilityBarItem
+												key="about-left"
+												disabled={i < 1}
+												icon="left"
+												message="Move Group Left"
+												action={this.moveItemLeft}
+												itemId={id}
+											/>,
+											<UtilityBarItem
+												key="about-right"
+												disabled={i === data.items.length - 1}
+												icon="right"
+												message="Move Group Right"
+												action={this.moveItemRight}
+												itemId={id}
+											/>,
+											<UtilityBarItem
+												key="about-trash"
+												icon="trash"
+												message="Delete Group"
+												action={this.removeItem}
+												itemId={id}
+											/>
+										]}>
+										<AboutCard {...item} />
+									</Group>
+								);
+							})}
+						</div>
+					</div>
+				</div>
 			</Section>
 		);
 	}

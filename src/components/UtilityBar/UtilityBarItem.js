@@ -9,7 +9,8 @@ import {
 	moreIcon,
 	imgIcon,
 	leftIcon,
-	rightIcon
+	rightIcon,
+	duplicate
 } from '../Common/icons';
 
 const iconMap = {
@@ -19,7 +20,8 @@ const iconMap = {
 	more: moreIcon,
 	img: imgIcon,
 	left: leftIcon,
-	right: rightIcon
+	right: rightIcon,
+	duplicate
 };
 
 const messageMap = {
@@ -29,10 +31,12 @@ const messageMap = {
 	more: 'More settings',
 	img: 'Change image',
 	left: 'Move left',
-	right: 'Move right'
+	right: 'Move right',
+	duplicate: 'Add Another Item'
 };
 
 export const UtilityBarItem = ({
+	type,
 	icon,
 	action,
 	itemId = '',

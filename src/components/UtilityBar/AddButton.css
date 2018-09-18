@@ -1,8 +1,8 @@
 .add-button {
 	background-color: #1a76d2;
 	border-radius: 100px;
-	width: 35px;
-	height: 35px;
+	width: 40px;
+	height: 40px;
 	border: none;
 	outline: none;
 	justify-content: center;
@@ -18,26 +18,21 @@
 	height: 13px;
 }
 
-.add-button-wrapper > .add-button {
-	width: 60px;
-	height: 60px;
-}
-
 .add-button-wrapper {
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
 	z-index: 4;
 	opacity: 0;
-	transition: opacity 0.3s ease-in-out;
+	transition: opacity 0.1s ease-in-out;
 }
 
 .add-button-wrapper.top {
-	top: -30px;
+	top: -20px;
 }
 
 .add-button-wrapper.bottom {
-	bottom: -30px;
+	bottom: -20px;
 }
 
 .website:hover .add-button-wrapper {

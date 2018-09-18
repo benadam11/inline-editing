@@ -109,6 +109,7 @@ class App extends React.Component {
 											icon="up"
 											key="up"
 											itemId={id}
+											message="Move Section Up"
 											action={this.moveItemUp}
 											el={this.el}
 										/>,
@@ -116,12 +117,14 @@ class App extends React.Component {
 											disabled={i === this.state.data.length - 1}
 											icon="down"
 											key="down"
+											message="Move Section Down"
 											itemId={id}
 											action={this.moveItemDown}
 										/>,
 										<UtilityBarItem
 											icon="trash"
 											key="trash"
+											message="Delete Section"
 											itemId={id}
 											action={this.removeItem}
 										/>

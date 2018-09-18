@@ -7,7 +7,12 @@ export const Preview = ({ toggleFlyout, label }) => {
 			<div
 				className="widget-preview"
 				style={{ height: `${random(60, 300)}px` }}
-				onClick={toggleFlyout}>
+				onClick={() => {
+					alert(
+						'This is a prototype - but if this were the real thing you would have successfully added a section'
+					);
+					toggleFlyout();
+				}}>
 				<button>Add</button>
 			</div>
 			<label className="preview-label">Short Widget Description</label>

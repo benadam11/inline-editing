@@ -1,68 +1,11 @@
 import React from 'react';
-import uuid from 'uuid';
-import { Consumer } from '../Common/HoverContext';
-import { Element, Group, GroupItem, Item, Section, GhostItem } from '../index';
+import initialData from './data';
+import { Element, Group, GroupItem, Section } from '../index';
 import { UtilityBarItem, FieldToggleItem } from '../UtilityBar/';
 import { MenuItem } from './MenuItem';
 import { MenuCategory } from './MenuCategory';
 import * as actions from './actions';
 import './Menu.css';
-
-const initialData = {
-	heading: {
-		content: 'Menu / Price List',
-		hidden: false
-	},
-	subheading: {
-		content: 'Add a footnote about this group',
-		hidden: false
-	},
-	categories: [
-		{
-			categoryId: uuid(),
-			heading: {
-				content: 'First Category',
-				hidden: false
-			},
-			subheading: {
-				content: 'Add a description about this category',
-				hidden: false
-			},
-			items: [
-				{
-					id: uuid(),
-					heading: {
-						content: 'First Item',
-						hidden: false
-					},
-					subheading: {
-						content: 'Add a description about this item',
-						hidden: false
-					},
-					price: {
-						content: '12',
-						hidden: false
-					}
-				},
-				{
-					id: uuid(),
-					heading: {
-						content: 'Second Item',
-						hidden: false
-					},
-					subheading: {
-						content: 'Add a description about this item',
-						hidden: false
-					},
-					price: {
-						content: '12',
-						hidden: false
-					}
-				}
-			]
-		}
-	]
-};
 
 export class Menu extends React.Component {
 	static defaultProps = {
@@ -78,6 +21,11 @@ export class Menu extends React.Component {
 
 	addCategory = () => {
 		this.setState(actions.addCategory);
+	};
+
+	duplicateCategory = i => {
+		console.log('called');
+		this.setState(actions.duplicateCategory(i));
 	};
 
 	removeCategory = id => {
@@ -142,148 +90,129 @@ export class Menu extends React.Component {
 					);
 				})}
 				{...this.props}>
-				<Consumer>
-					{({ isEditing, isHovered }) => {
-						const showAddCategory =
-							this.props.maxItems > data.categories.length &&
-							isEditing /*|| isHovered*/;
-						return (
-							<div className="menu">
-								<div className="container inset">
-									{!data.heading.hidden && (
-										<h2>
-											<Item>
-												<Element
-													value={data.heading.content}
-													placeholder="Enter a section heading"
-												/>
-											</Item>
-										</h2>
-									)}
-									{categories.map(
-										({ items, categoryId, ...fields }, i, arr) => {
-											const { heading, subheading } = fields;
-											const showGhostItem =
-												this.props.maxItems > arr.length &&
-												isEditing /*|| isHovered*/;
+				<div className="menu">
+					<div className="container inset">
+						{!data.heading.hidden && (
+							<h2>
+								<Element
+									value={data.heading.content}
+									placeholder="Enter a section heading"
+								/>
+							</h2>
+						)}
+						{categories.map(({ items, categoryId, ...fields }, i, arr) => {
+							const { heading, subheading } = fields;
+							return (
+								<Group
+									key={categoryId}
+									fields={Object.keys(fields).map(key => {
+										return (
+											<FieldToggleItem
+												id={categoryId}
+												key={key}
+												field={key}
+												hidden={fields[key].hidden}
+												handleToggle={this.toggleCategoryField}
+											/>
+										);
+									})}
+									actions={[
+										<UtilityBarItem
+											key="duplicate1"
+											icon="duplicate"
+											message="Duplicate Category"
+											action={this.duplicateCategory}
+											itemId={i}
+										/>,
+										<UtilityBarItem
+											key="up1"
+											icon="up"
+											message="Move Category Up"
+											disabled={i < 1}
+											action={this.moveCategoryUp}
+											itemId={categoryId}
+										/>,
+										<UtilityBarItem
+											disabled={i === arr.length - 1}
+											key="down1"
+											icon="down"
+											message="Move Category Down"
+											action={this.moveCategoryDown}
+											itemId={categoryId}
+										/>,
+										<UtilityBarItem
+											key="trash1"
+											icon="trash"
+											message="Delete Category"
+											action={this.removeCategory}
+											itemId={categoryId}
+										/>
+									]}>
+									<MenuCategory heading={heading} subheading={subheading}>
+										{items.map(({ id, ...fields }, i) => {
+											const { heading, subheading, price } = fields;
 											return (
-												<Group
-													key={categoryId}
+												<GroupItem
+													key={id}
 													fields={Object.keys(fields).map(key => {
 														return (
 															<FieldToggleItem
-																id={categoryId}
+																id={id}
 																key={key}
 																field={key}
 																hidden={fields[key].hidden}
-																handleToggle={this.toggleCategoryField}
+																handleToggle={this.toggleItemField}
 															/>
 														);
 													})}
 													actions={[
 														<UtilityBarItem
-															key="up1"
+															key="up2"
 															icon="up"
+															message="Move Item Up"
 															disabled={i < 1}
-															action={this.moveCategoryUp}
-															itemId={categoryId}
+															action={this.moveItemUp}
+															itemId={id}
 														/>,
 														<UtilityBarItem
-															disabled={i === arr.length - 1}
-															key="down1"
+															key="down2"
 															icon="down"
-															action={this.moveCategoryDown}
-															itemId={categoryId}
+															message="Move Item Down"
+															disabled={i === items.length - 1}
+															action={this.moveItemDown}
+															itemId={id}
 														/>,
 														<UtilityBarItem
-															key="trash1"
+															key="trash2"
 															icon="trash"
-															action={this.removeCategory}
-															itemId={categoryId}
+															message="Delete Item"
+															action={this.removeItem}
+															itemId={id}
 														/>
 													]}>
-													<MenuCategory
+													<MenuItem
 														heading={heading}
-														subheading={subheading}>
-														{items.map(({ id, ...fields }, i) => {
-															const { heading, subheading, price } = fields;
-															return (
-																<GroupItem
-																	key={id}
-																	fields={Object.keys(fields).map(key => {
-																		return (
-																			<FieldToggleItem
-																				id={id}
-																				key={key}
-																				field={key}
-																				hidden={fields[key].hidden}
-																				handleToggle={this.toggleItemField}
-																			/>
-																		);
-																	})}
-																	actions={[
-																		<UtilityBarItem
-																			key="up2"
-																			icon="up"
-																			disabled={i < 1}
-																			action={this.moveItemUp}
-																			itemId={id}
-																		/>,
-																		<UtilityBarItem
-																			key="down2"
-																			icon="down"
-																			disabled={i === items.length - 1}
-																			action={this.moveItemDown}
-																			itemId={id}
-																		/>,
-																		<UtilityBarItem
-																			key="trash2"
-																			icon="trash"
-																			action={this.removeItem}
-																			itemId={id}
-																		/>
-																	]}>
-																	<MenuItem
-																		heading={heading}
-																		subheading={subheading}
-																		price={price}
-																	/>
-																</GroupItem>
-															);
-														})}
-														<GhostItem
-															label="Add Menu Item"
-															labelPosition="left"
-															show={showGhostItem}
-															action={this.addItem}
-															actionId={categoryId}
-														/>
-													</MenuCategory>
-												</Group>
+														subheading={subheading}
+														price={price}
+													/>
+												</GroupItem>
 											);
-										}
-									)}
-									<GhostItem
-										card
-										label="Add Menu Category"
-										show={showAddCategory}
-										action={this.addCategory}
-									/>
-									{!data.subheading.hidden && (
-										<h5>
-											<Item>
-												<Element
-													value={data.subheading.content}
-													placeholder="Enter a footnote"
-												/>
-											</Item>
-										</h5>
-									)}
-								</div>
-							</div>
-						);
-					}}
-				</Consumer>
+										})}
+									</MenuCategory>
+								</Group>
+							);
+						})}
+
+						{!data.subheading.hidden && (
+							<h5>
+								<Element
+									value={data.subheading.content}
+									placeholder="Enter a footnote"
+								/>
+							</h5>
+						)}
+					</div>
+				</div>
 			</Section>
 		);
 	}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Item, Element, Section, FieldToggleItem } from '../index';
+import { Element, Section, FieldToggleItem } from '../index';
 import './Content.css';
 
 const content =
@@ -60,34 +60,28 @@ export class ContentSection extends React.Component {
 					<div className="container">
 						{!heading.hidden && (
 							<h3>
-								<Item>
-									<Element
-										maxChars={14}
-										handleChange={this.handleTextChange}
-										value={heading.content}
-										placeholder="Enter a heading"
-									/>
-								</Item>
+								<Element
+									maxChars={14}
+									handleChange={this.handleTextChange}
+									value={heading.content}
+									placeholder="Enter a heading"
+								/>
 							</h3>
 						)}
 						{!text.hidden && (
-							<Item>
-								<Element
-									handleChange={this.handleTextChange}
-									value={text.content}
-									placeholder="Enter some text"
-								/>
-							</Item>
+							<Element
+								handleChange={this.handleTextChange}
+								value={text.content}
+								placeholder="Enter some text"
+							/>
 						)}
 						{!CTA.hidden && (
 							<button className="cta-button">
-								<Item>
-									<Element
-										handleChange={this.handleTextChange}
-										value={CTA.content}
-										placeholder="Button"
-									/>
-								</Item>
+								<Element
+									handleChange={this.handleTextChange}
+									value={CTA.content}
+									placeholder="Button"
+								/>
 							</button>
 						)}
 					</div>

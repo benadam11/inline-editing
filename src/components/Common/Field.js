@@ -1,6 +1,5 @@
 import React from 'react';
 import { Provider, Consumer } from './HoverContext';
-import cx from 'classnames';
 
 export class Field extends React.Component {
 	render() {
@@ -8,19 +7,15 @@ export class Field extends React.Component {
 			<Consumer>
 				{context => {
 					const { field, selectedField, onMouseOver, onMouseLeave } = context;
-					const selected = selectedField === this.field;
-					const hover = selectedField !== this.field && field === this.field;
-					const classNames = cx('field', { selected, hover });
-					const newContext = {
-						...context,
-						isSelected: !!selected,
-						isHovered: hover
-					};
+					const isSelected = selectedField === this.field;
+					const isHovered =
+						/*selectedField !== this.field &&*/ field === this.field;
+					const newContext = { ...context, isSelected, isHovered };
 					return (
 						<Provider value={newContext}>
 							<div
 								ref={ref => (this.field = ref)}
-								className={classNames}
+								className="field"
 								onMouseOver={onMouseOver}
 								onMouseLeave={onMouseLeave}
 								{...this.props}

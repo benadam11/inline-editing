@@ -1,8 +1,11 @@
 import React from 'react';
+import uuid from 'uuid';
 import ReactTooltip from 'react-tooltip';
-import { Field } from './Field';
-import { Provider, Consumer } from './HoverContext';
-import { UtilityBar, AddButton, LayoutChanger } from '../UtilityBar/';
+import { Field, Base } from './';
+import { Consumer } from './HoverContext';
+import { AddButton } from '../UtilityBar/';
+const id1 = uuid();
+const id2 = uuid();
 
 export class Section extends React.Component {
 	render() {
@@ -10,41 +13,39 @@ export class Section extends React.Component {
 		return (
 			<Field>
 				<Consumer>
-					{context => {
-						const { selectedSection } = context;
-						const isEditing = selectedSection === this.el;
+					{({ isHovered, isSelected, overlay, danger }) => {
 						return (
-							<Provider value={{ ...context, isEditing }}>
-								<section
-									className={`${this.props.layout} section ${
-										isEditing ? 'selected' : ''
-									}`}
-									data-type="Section"
-									ref={el => (this.el = el)}>
-									{Boolean(index < 1) && (
+							<Base
+								className="section"
+								actions={this.props.actions}
+								isHovered={isHovered}
+								overlay={overlay}
+								danger={danger}
+								isSelected={isSelected}>
+								{Boolean(index < 1) &&
+									!danger &&
+									!overlay && (
 										<div
 											className="add-button-wrapper top"
+											data-for={id1}
 											data-tip="Add Section">
 											<AddButton addItem={this.props.addSection} />
 										</div>
 									)}
-									<UtilityBar
-										hasText={this.props.hasText}
-										actions={this.props.actions}
-										fields={this.props.fields}
-										// layout={<LayoutChanger layout={this.props.layout} />}
-									/>
-									{this.props.children}
-									{Boolean(index + 1) && (
+								{this.props.children}
+								{Boolean(index + 1) &&
+									!danger &&
+									!overlay && (
 										<div
 											className="add-button-wrapper bottom"
+											data-for={id2}
 											data-tip="Add section">
 											<AddButton addItem={this.props.addSection} />
 										</div>
 									)}
-								</section>
-								<ReactTooltip effect="solid" />
-							</Provider>
+								<ReactTooltip id={id1} effect="solid" />
+								<ReactTooltip id={id2} effect="solid" />
+							</Base>
 						);
 					}}
 				</Consumer>

@@ -71,6 +71,11 @@ export const addCategory = ({ data }) => {
 	return { data };
 };
 
+export const duplicateCategory = i => ({ data }) => {
+	data.categories.splice(i, 0, newCategory());
+	return { data };
+};
+
 export const removeCategory = id => ({ data }) => {
 	data.categories = data.categories.filter(
 		category => category.categoryId !== id

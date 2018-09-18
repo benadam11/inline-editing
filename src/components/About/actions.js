@@ -38,6 +38,12 @@ export const addItem = ({ data }) => {
 	return { data };
 };
 
+export const duplicateItem = i => ({ data }) => {
+	// data.items = data.items.concat(newItem());
+	data.items.splice(i, 0, newItem());
+	return { data };
+};
+
 export const removeItem = id => ({ data }) => {
 	data.items = data.items.filter(item => item.id !== id);
 	return { data };

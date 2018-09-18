@@ -1,41 +1,48 @@
 .fade-enter-done {
 	transform: scale(1) translateY(0px);
+	will-change: transform;
 }
 
 .fade-enter {
 	opacity: 0.01;
 	transform: scale(0.95) translateY(20px);
+	will-change: transform;
 }
 .fade-enter-active {
 	opacity: 1;
 	transform: scale(1) translateY(0px);
-	transition: all 300ms ease-out;
+	transition: transform 300ms ease-out;
+	will-change: transform;
 }
 .fade-exit {
 	opacity: 1;
 	transform: scale(1) translateY(0px);
+	will-change: transform;
 }
 .fade-exit-active {
 	opacity: 0.01;
 	transform: scale(0.95) translateY(20px);
-	transition: all 300ms ease-out;
+	transition: transform 300ms ease-out;
+	will-change: transform;
 }
 
 .slide-enter {
 	opacity: 0.01;
 	transform: scale(0.95) translateX(20%);
+	transition: transform 300ms ease-out;
 }
 .slide-enter-active {
 	opacity: 1;
 	transform: scale(1) translateX(0%);
-	transition: all 300ms ease-out;
+	transition: transform 300ms ease-out;
 }
 .slide-exit {
 	opacity: 1;
 	transform: scale(1) translateX(0%);
+	transition: transform 300ms ease-out;
 }
 .slide-exit-active {
 	opacity: 0.01;
 	transform: scale(0.95) translateX(20%);
-	transition: all 300ms ease-out;
+	transition: transform 300ms ease-out;
 }

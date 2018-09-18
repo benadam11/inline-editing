@@ -25,56 +25,68 @@ body {
 .group,
 .item,
 .group-item {
+	position: relative;
 	outline-color: transparent;
 }
 
 .hover,
 .selected {
 	position: relative;
+	z-index: 1;
 }
 
-.field.selected > .section,
-.field.hover > .section,
-.section:hover,
-.selected.section,
-.selected.header {
-	transition: all 0.1s ease-out;
-	outline-color: #1976d2;
-	outline-style: solid;
-	outline-width: 2px;
-	outline-offset: -2px;
+.field {
+	position: relative;
 }
 
-/* .field.selected > .group,
-.field.hover > .group {
-	transition: all 0.1s ease-out;
+.element:hover,
+.hover {
+	transition: outline 0.1s ease-out;
 	outline-color: #1976d2;
 	outline-style: solid;
-	outline-width: 2px;
+	outline-width: 1.2px;
+}
+
+.hover {
 	outline-offset: 10px;
-} */
-
-.field.selected > .group,
-.field.hover > .group,
-.field.selected > .group-item,
-.field.hover > .group-item {
-	transition: all 0.1s ease-out;
-	outline-color: #1976d2;
-	outline-style: solid;
 	outline-width: 2px;
-	outline-offset: 10px;
 }
 
-.field.hover > .item {
-	transition: all 0.1s ease-out;
-	outline-color: #1976d2;
-	outline-style: solid;
-	outline-width: 1px;
-	outline-offset: -1px;
+.section.hover {
+	outline-offset: 0px;
 }
 
-.selected .megadraft {
-	cursor: text;
+.section.danger,
+.group.danger,
+.group-item.danger {
+	outline-color: #db1802;
+}
+
+.overlay {
+	position: relative;
+}
+
+/* .selected.overlay:before, */
+.hover.overlay:before {
+	content: '';
+	position: absolute;
+	top: -10px;
+	left: -10px;
+	right: -10px;
+	bottom: -10px;
+	background-color: rgba(26, 118, 210, 0.1);
+}
+
+.section.hover.overlay:before {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.selected.overlay.danger:before,
+.hover.overlay.danger:before {
+	background-color: rgba(219, 24, 2, 0.1);
 }
 
 .megadraft-editor .DraftEditor-root {
@@ -89,6 +101,36 @@ body {
 
 .megadraft-editor .toolbar__arrow {
 	border-color: #2a2d35 transparent transparent;
+}
+
+.public-DraftEditorPlaceholder-root {
+	width: 100%;
+}
+
+.megadraft-editor .DraftEditor-root {
+	font-size: inherit;
+	color: inherit;
+	line-height: inherit;
+}
+
+.megadraft-editor .toolbar__wrapper {
+	background-color: #2a2d35;
+}
+
+.megadraft-editor .toolbar__arrow {
+	border-color: #2a2d35 transparent transparent;
+}
+
+.megadraft-editor .toolbar__wrapper {
+	left: 0;
+}
+
+.megadraft-editor .toolbar__arrow {
+	display: none;
+}
+
+.megadraft-editor .toolbar > div {
+	left: 0;
 }
 
 .public-DraftEditorPlaceholder-root {

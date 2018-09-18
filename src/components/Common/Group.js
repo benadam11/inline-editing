@@ -1,7 +1,5 @@
 import React from 'react';
-import { UtilityBar } from '../UtilityBar/';
-import { Field } from './Field';
-import { AnimateIn } from './AnimateIn';
+import { Field, Base } from './';
 import { Consumer } from './HoverContext';
 
 export class Group extends React.Component {
@@ -9,18 +7,17 @@ export class Group extends React.Component {
 		return (
 			<Field>
 				<Consumer>
-					{({ isSelected, isHovered }) => {
+					{({ isSelected, isHovered, overlay, danger }) => {
 						return (
-							<div className="group" data-type="Group">
-								{isSelected /*|| isHovered*/ && (
-									<UtilityBar
-										type="group"
-										actions={this.props.actions}
-										fields={this.props.fields}
-									/>
-								)}
+							<Base
+								actions={this.props.actions}
+								className="group"
+								danger={danger}
+								overlay={overlay}
+								isHovered={isHovered}
+								isSelected={isSelected}>
 								{this.props.children}
-							</div>
+							</Base>
 						);
 					}}
 				</Consumer>
