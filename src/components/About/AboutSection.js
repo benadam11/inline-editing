@@ -9,7 +9,7 @@ import './AboutSection.css';
 const items = Array.from({ length: 3 }).map(item => actions.newItem());
 const initialData = {
 	heading: {
-		content: 'Gear & Guides',
+		content: 'Our Specialties',
 		hidden: false
 	},
 	items
@@ -35,7 +35,7 @@ export class AboutSection extends React.Component {
 		this.setState(actions.addItem);
 	};
 
-	duplicateItem = i => {
+	duplicateItem = (id, e, i) => {
 		this.setState(actions.duplicateItem(i));
 	};
 
@@ -78,7 +78,10 @@ export class AboutSection extends React.Component {
 					<div className="container">
 						{!data.heading.hidden && (
 							<h2>
-								<Element value="Gear & Guides" placeholder="Enter a heading" />
+								<Element
+									value="The Total Experience"
+									placeholder="Enter a heading"
+								/>
 							</h2>
 						)}
 						<div className="about-items">
@@ -103,7 +106,8 @@ export class AboutSection extends React.Component {
 												icon="duplicate"
 												message="Duplicate Group"
 												action={this.duplicateItem}
-												itemId={i}
+												itemId={id}
+												itemIndex={i}
 											/>,
 											<UtilityBarItem
 												key="about-left"

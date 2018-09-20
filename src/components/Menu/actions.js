@@ -40,6 +40,13 @@ export const addItem = id => ({ data }) => {
 	return { data };
 };
 
+export const duplicateItem = (id, e, i) => ({ data }) => {
+	data.categories
+		.find(category => category.categoryId === id)
+		.items.splice(i, 0, newItem());
+	return { data };
+};
+
 export const removeItem = id => ({ data }) => {
 	data.categories.forEach(category => {
 		category.items = category.items.filter(item => item.id !== id);
@@ -71,7 +78,7 @@ export const addCategory = ({ data }) => {
 	return { data };
 };
 
-export const duplicateCategory = i => ({ data }) => {
+export const duplicateCategory = (id, e, i) => ({ data }) => {
 	data.categories.splice(i, 0, newCategory());
 	return { data };
 };

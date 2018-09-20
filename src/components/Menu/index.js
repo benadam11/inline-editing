@@ -23,9 +23,8 @@ export class Menu extends React.Component {
 		this.setState(actions.addCategory);
 	};
 
-	duplicateCategory = i => {
-		console.log('called');
-		this.setState(actions.duplicateCategory(i));
+	duplicateCategory = id => {
+		this.setState(actions.duplicateCategory(id));
 	};
 
 	removeCategory = id => {
@@ -44,6 +43,10 @@ export class Menu extends React.Component {
 
 	addItem = id => {
 		this.setState(actions.addItem(id));
+	};
+
+	duplicateItem = (id, e, i) => {
+		this.setState(actions.duplicateItem(id, e, i));
 	};
 
 	removeItem = id => {
@@ -120,9 +123,10 @@ export class Menu extends React.Component {
 										<UtilityBarItem
 											key="duplicate1"
 											icon="duplicate"
+											itemIndex={i}
 											message="Duplicate Category"
 											action={this.duplicateCategory}
-											itemId={i}
+											itemId={categoryId}
 										/>,
 										<UtilityBarItem
 											key="up1"
@@ -166,6 +170,14 @@ export class Menu extends React.Component {
 														);
 													})}
 													actions={[
+														<UtilityBarItem
+															key="duplicateMenuItem"
+															icon="duplicate"
+															itemIndex={i}
+															message="Duplicate Item"
+															action={this.duplicateItem}
+															itemId={categoryId}
+														/>,
 														<UtilityBarItem
 															key="up2"
 															icon="up"

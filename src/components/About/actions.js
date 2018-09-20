@@ -7,11 +7,11 @@ const move = (arr, from, offset) => {
 export const newItem = () => ({
 	id: uuid(),
 	img: {
-		url: `https://source.unsplash.com/random/${uuid()}`,
+		url: `https://source.unsplash.com/featured/?food/${uuid()}`,
 		hidden: false
 	},
 	heading: {
-		content: 'Ready Your Pack',
+		content: 'Specialty',
 		hidden: false
 	},
 	text: {

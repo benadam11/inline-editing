@@ -58,6 +58,10 @@ class App extends React.Component {
 		delay(100).then(this.animateIn);
 	};
 
+	scrollToSection = section => {
+		if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	};
+
 	animateIn = () => {
 		animate({
 			elements: '.widget-preview-wrapper',
@@ -82,12 +86,18 @@ class App extends React.Component {
 		}
 	};
 
-	moveItemUp = id => {
-		this.setState(actions.moveLeft(id));
+	moveItemUp = (id, e) => {
+		const section = e.target.closest('.section');
+		this.setState(actions.moveLeft(id), () => {
+			this.scrollToSection(section);
+		});
 	};
 
-	moveItemDown = id => {
-		this.setState(actions.moveRight(id));
+	moveItemDown = (id, e) => {
+		const section = e.target.closest('.section');
+		this.setState(actions.moveRight(id), () => {
+			this.scrollToSection(section);
+		});
 	};
 
 	render() {

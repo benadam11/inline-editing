@@ -25,26 +25,30 @@ export class Section extends React.Component {
 								{Boolean(index < 1) &&
 									!danger &&
 									!overlay && (
-										<div
-											className="add-button-wrapper top"
-											data-for={id1}
-											data-tip="Add Section">
-											<AddButton addItem={this.props.addSection} />
-										</div>
+										<React.Fragment>
+											<div
+												className="add-button-wrapper top"
+												data-for={id1}
+												data-tip="Add Section">
+												<AddButton addItem={this.props.addSection} />
+											</div>
+											<ReactTooltip id={id1} effect="solid" />
+										</React.Fragment>
 									)}
 								{this.props.children}
 								{Boolean(index + 1) &&
 									!danger &&
 									!overlay && (
-										<div
-											className="add-button-wrapper bottom"
-											data-for={id2}
-											data-tip="Add section">
-											<AddButton addItem={this.props.addSection} />
-										</div>
+										<React.Fragment>
+											<div
+												className="add-button-wrapper bottom"
+												data-for={id2}
+												data-tip="Add section">
+												<AddButton addItem={this.props.addSection} />
+											</div>
+											<ReactTooltip id={id2} effect="solid" />
+										</React.Fragment>
 									)}
-								<ReactTooltip id={id1} effect="solid" />
-								<ReactTooltip id={id2} effect="solid" />
 							</Base>
 						);
 					}}

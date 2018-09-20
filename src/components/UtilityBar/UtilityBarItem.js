@@ -40,11 +40,12 @@ export const UtilityBarItem = ({
 	icon,
 	action,
 	itemId = '',
+	itemIndex = '',
 	disabled = false,
 	message = ''
 }) => {
 	const id = uuid();
-	const handleClick = e => action && action(itemId, e);
+	const handleClick = e => action && action(itemId, e, itemIndex);
 	const classNames = cx(`utility-bar-item ${icon}`, {
 		disabled
 	});
